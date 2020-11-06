@@ -1,5 +1,6 @@
 { pkgs, lib, ... }:
 with pkgs; let
+  unstable = import <nixos-unstable> { };
   easy-ps = import
     (pkgs.fetchFromGitHub {
       owner = "justinwoo";
@@ -46,9 +47,11 @@ with pkgs; let
     let
       java = pkgs.jdk11;
       javaOpts = { jre = java; };
-      sbt = pkgs.sbt.override javaOpts;
-      scala = pkgs.sbt.override javaOpts;
+      # We use an unstable version of sbt to get the sbtn thin client
+      sbt = unstable.sbt.override javaOpts;
+      scala = pkgs.scala.override javaOpts;
       coursier = pkgs.coursier.override javaOpts;
+      bloop = pkgs.bloop.override javaOpts;
       metals = pkgs.metals.override javaOpts;
       scalafmt = pkgs.scalafmt.override javaOpts;
     in
@@ -58,7 +61,9 @@ with pkgs; let
         sbt
         scala
         coursier
+        bloop
         scalafmt
+        metals
       ];
       home.sessionVariables.JAVA_HOME = java.home;
     };

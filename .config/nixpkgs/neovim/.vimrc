@@ -1,8 +1,6 @@
 " set leader key
 let mapleader=' '
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/target/*,*/node_modules/*
-
 " " Copy to clipboard
 vnoremap  <leader>y  "+y
 nnoremap  <leader>Y  "+yg_
@@ -15,6 +13,12 @@ nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
+" faster navigation between splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 " Clear search highlight with esc
 nnoremap <esc> :noh<return><esc>
 
@@ -26,10 +30,6 @@ set nofoldenable
 " better display for messages
 set cmdheight=2
 
-" always display signs
-set signcolumn=yes
-
+set number
 set nobackup
 set nowritebackup
-
-set number
