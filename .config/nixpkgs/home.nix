@@ -14,6 +14,7 @@
     enable = true;
     userName = "Guillaume Bogard";
     userEmail = "hey@guillaumebogard.dev";
+    extraConfig.core.editor = "nvim";
   };
 
   home.packages = with pkgs; [
@@ -24,6 +25,7 @@
     curl
     wget
     ripgrep
+    youtube-dl 
   ];
 
   # Home Manager needs a bit of information about you and the

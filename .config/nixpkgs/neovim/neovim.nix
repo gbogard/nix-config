@@ -1,8 +1,19 @@
 { config, pkgs, ... }:
 
-{
+rec {
+  home.packages = [ 
+    ((import ./neovim-with-cd.nix) { inherit config; inherit pkgs; }) 
+  ];
+  programs.zsh = {
+    shellGlobalAliases = {
+      vi = "vim";
+      vim = "nvim";
+      nvim = "nvimWithCd";
+    };
+  };
   programs.neovim = {
     enable = true;
+    package = pkgs.neovim-unwrapped;
     extraConfig = (builtins.readFile ./.vimrc);
     plugins = with pkgs.vimPlugins; [
       # Monokai theme
@@ -33,12 +44,15 @@
         config = ''
           let g:NERDTreeWinPos = "right"
           map <C-n> :NERDTreeToggle<CR>
+          let NERDTreeShowHidden=1
+          let NERDTreeQuitOnOpen=1
         '';
       }
       {
         plugin = ctrlp-vim;
         config = "
         set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/target/*,*/node_modules/*
+        let g:ctrlp_show_hidden = 1
         ";
       }
       {
@@ -74,6 +88,10 @@
           nnoremap <silent> [q :cprevious<CR>
           nnoremap <silent> ]q :cnext<CR>
         '';
+      }
+      {
+        plugin = vimux;
+        config = "";
       }
       coc-metals
       vim-airline

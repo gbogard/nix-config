@@ -45,12 +45,20 @@ with pkgs; {
        bindkey '^[[B' history-substring-search-down";
     shellAliases = {
       ps = "procs";
-      sbt = "sbtn";
     };
-    shellGlobalAliases = {
-      vi = "vim";
-      vim = "nvim";
-    };
+  };
+  programs.tmux = {
+    enable = true;
+    newSession = true;
+    keyMode = "vi";
+    extraConfig = ''
+    unbind C-b
+    set -g prefix C-Space
+    bind Space send-prefix
+    set -g mouse on
+    bind | split-window -h -c "#{pane_current_path}"
+    bind - split-window -v -c "#{pane_current_path}"
+    '';
   };
   home.packages = [
     starship
