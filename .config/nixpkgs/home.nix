@@ -4,11 +4,8 @@
   imports = [
     ./shell.nix
     ./neovim/neovim.nix
-    ./scala.nix
-    ./haskell.nix
-    ./javascript.nix
-    ./purescript.nix
-    ./kube.nix
+    ./programming.nix
+    ./ops.nix
   ];
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
