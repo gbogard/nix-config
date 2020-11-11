@@ -1,6 +1,8 @@
-{ pkgs, ... }:
+{ ... }:
 
-with pkgs; {
+let
+  inherit (import ./pkgs.nix) pkgs;
+in with pkgs; {
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
@@ -36,6 +38,7 @@ with pkgs; {
     initExtraBeforeCompInit =
       # Initialise nix path on macOs
       ". $HOME/.nix-profile/etc/profile.d/nix.sh;" +
+      ". $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh;" +
       # Start starship
       "source <(starship init zsh --print-full-init)";
     initExtra =
@@ -46,6 +49,7 @@ with pkgs; {
       "setopt auto_cd";
     shellAliases = {
       ps = "procs";
+      ls = "exa";
     };
   };
   programs.tmux = {

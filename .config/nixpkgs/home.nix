@@ -1,5 +1,6 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
+let inherit (import ./pkgs.nix) pkgs; in
 {
   imports = [
     ./shell.nix

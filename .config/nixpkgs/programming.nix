@@ -1,6 +1,6 @@
-{ pkgs, lib, ... }:
-with pkgs; let
-  unstable = import <nixos-unstable> { };
+{ lib, ... }:
+ let
+  inherit (import ./pkgs.nix) unstable pkgs;
   easy-ps = import
     (pkgs.fetchFromGitHub {
       owner = "justinwoo";
@@ -11,7 +11,7 @@ with pkgs; let
     {
       inherit pkgs;
     };
-  haskell = {
+  haskell = with pkgs; {
     home.packages = lib.mkMerge [
       (with pkgs.haskellPackages; [
         haskell-language-server
@@ -27,7 +27,7 @@ with pkgs; let
       ]
     ];
   };
-  purescript = with easy-ps; {
+  purescript = with pkgs; with easy-ps; {
     home.packages = [
       purs
       spago
@@ -36,11 +36,12 @@ with pkgs; let
       nodePackages.purescript-language-server
     ];
   };
-  javascript = with pkgs.nodePackages; {
+  javascript = with pkgs; with nodePackages; {
     home.packages = [
       nodejs-14_x
       yarn
       typescript
+      serve
     ];
   };
   scala =
