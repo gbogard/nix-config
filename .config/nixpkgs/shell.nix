@@ -38,11 +38,12 @@ with pkgs; {
       ". $HOME/.nix-profile/etc/profile.d/nix.sh;" +
       # Start starship
       "source <(starship init zsh --print-full-init)";
-
     initExtra =
       # Configure bindings for history search
       "bindkey '^[[A' history-substring-search-up
-       bindkey '^[[B' history-substring-search-down";
+       bindkey '^[[B' history-substring-search-down;" +
+      # Set auto cd
+      "setopt auto_cd";
     shellAliases = {
       ps = "procs";
     };
