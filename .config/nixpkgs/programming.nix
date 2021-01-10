@@ -68,10 +68,17 @@
       ];
       home.sessionVariables.JAVA_HOME = java.home;
     };
+  python = with pkgs; {
+    home.packages = [
+      python38Full
+      python38Packages.pip
+    ];
+  };
 in
 lib.mkMerge [
   haskell
   purescript
   javascript
   scala
+  python
 ]
