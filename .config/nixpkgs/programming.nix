@@ -55,6 +55,7 @@
       bloop = pkgs.bloop.override javaOpts;
       metals = pkgs.metals.override javaOpts;
       scalafmt = pkgs.scalafmt.override javaOpts;
+      maven = pkgs.maven.override { jdk = java; };
     in
     {
       home.packages = [
@@ -65,6 +66,7 @@
         bloop
         scalafmt
         metals
+        maven
       ];
       home.sessionVariables.JAVA_HOME = java.home;
     };
