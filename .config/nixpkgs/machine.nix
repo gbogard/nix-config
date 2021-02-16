@@ -1,1 +1,0 @@
-{ hostname = "MBPdeGuillaume"; operatingSystem = "Darwin"; }
