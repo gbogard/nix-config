@@ -47,9 +47,8 @@ lib.mkMerge [
   })
   # Imports
   (import ./shell.nix { })
-  (import ./neovim/neovim.nix {
-    inherit config;inherit pkgs;inherit lib;
-  })
+  (import ./neovim/neovim.nix { inherit config;inherit pkgs;inherit lib; })
+  (import ./docker.nix { inherit lib; })
   (import ./programming.nix { inherit config;inherit pkgs;inherit lib; })
   (import ./ops.nix { inherit config;inherit pkgs;inherit lib; })
 
