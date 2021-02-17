@@ -4,7 +4,7 @@ let
   machine = (import ./machine.nix);
 in
 lib.mkMerge [
-  (lib.mkIf (machine.hostname == "nananas-xubuntu") {
+  (lib.mkIf (machine.operatingSystem == "Ubuntu") {
     home.packages = [
       pkgs.docker
     ];

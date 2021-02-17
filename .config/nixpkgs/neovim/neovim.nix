@@ -1,14 +1,13 @@
 { config, pkgs, ... }:
 
 rec {
-  home.packages = [ 
-    ((import ./neovim-with-cd.nix) { inherit config; inherit pkgs; }) 
+  home.packages = [
+    ((import ./neovim-with-cd.nix) { inherit config;inherit pkgs; })
   ];
   programs.zsh = {
     shellGlobalAliases = {
-      vi = "vim";
+      vi = "nvim";
       vim = "nvim";
-      nvim = "nvimWithCd";
     };
   };
   programs.neovim = {

@@ -37,16 +37,16 @@ lib.mkMerge [
   }
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  (lib.mkIf (machine.hostname == "nananas-xubuntu") {
+  (lib.mkIf (machine.operatingSystem == "Ubuntu") {
     home.username = "guillaune";
     home.homeDirectory = "/home/guillaume";
   })
-  (lib.mkIf (machine.hostname == "MBPdeGuillaume") {
+  (lib.mkIf (machine.operatingSystem == "Darwin") {
     home.username = "guillaumebogard";
     home.homeDirectory = "/Users/guillaumebogard";
   })
   # Imports
-  (import ./shell.nix { })
+  (import ./shell.nix { inherit lib; })
   (import ./neovim/neovim.nix { inherit config;inherit pkgs;inherit lib; })
   (import ./docker.nix { inherit lib; })
   (import ./programming.nix { inherit config;inherit pkgs;inherit lib; })
