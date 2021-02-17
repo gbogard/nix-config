@@ -37,17 +37,14 @@ with pkgs; lib.mkMerge [
           };
         }
       ];
-
-      initExtraBeforeCompInit =
-        # Start starship
-        "source <(starship init zsh --print-full-init)";
       initExtra =
+        # Start starship
+        "source <(starship init zsh --print-full-init);" +
         # Configure bindings for history search
-        "bindkey '^[[A' history-substring-search-up
-       bindkey '^[[B' history-substring-search-down;" +
+        "bindkey '^[[A' history-substring-search-up;
+         bindkey '^[[B' history-substring-search-down;" +
         # Set auto cd
-        "setopt auto_cd";
-
+        "setopt auto_cd;";
       shellAliases = {
         ps = "procs";
         ls = "exa";
@@ -74,14 +71,16 @@ with pkgs; lib.mkMerge [
     ];
   }
   (lib.mkIf (machine.operatingSystem == "Darwin") {
-    programs.zsh.initExtraFirst =
+    programs.zsh.initExtraBeforeCompInit =
       # Initialise nix path on macOs
       ". $HOME/.nix-profile/etc/profile.d/nix.sh;" +
       ". $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh;";
   })
   (lib.mkIf (machine.operatingSystem == "Ubuntu") {
-    programs.zsh.initExtraFirst =
+    programs.zsh.initExtraBeforeCompInit =
       # Initialise nix path on Ubuntu (multi-user setup)
-      "export PATH=\"$PATH:/nix/var/nix/profiles/per-user/$USER/profile/bin\"";
+      "export PATH=\"$PATH:/nix/var/nix/profiles/default/bin\"
+       export PATH=\"$PATH:/nix/var/nix/profiles/per-user/$USER/profile/bin\"
+       export NIX_PATH=$HOME/.nix-defexpr/channels\${NIX_PATH:+:}$NIX_PATH";
   })
 ]
