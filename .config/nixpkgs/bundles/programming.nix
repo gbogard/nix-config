@@ -1,6 +1,6 @@
-{ lib, ... }:
- let
-  inherit (import ./pkgs.nix) unstable pkgs;
+{ lib, config, ... }:
+let
+  inherit (import ../pkgs.nix) unstable pkgs;
   easy-ps = import
     (pkgs.fetchFromGitHub {
       owner = "justinwoo";
@@ -83,4 +83,6 @@ lib.mkMerge [
   javascript
   scala
   python
+  # Imports
+  (import ../packages/neovim/default.nix { inherit config;inherit lib;inherit pkgs; })
 ]
