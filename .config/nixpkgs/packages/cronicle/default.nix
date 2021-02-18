@@ -7,31 +7,31 @@ let
   queueDir = "${dataDir}/queue";
   pidFile = "${dataDir}/pid";
   logArchiveDir = "${dataDir}/log-archives";
+  version = "0.8.56";
+  src =
+    (pkgs.fetchFromGitHub {
+      owner = "jhuckaby";
+      repo = "Cronicle";
+      rev = "v${version}";
+      sha256 = "1pv190pm346iwbahcn787afavsrl3ddc0wh5xc3ym62gjl8c2al1";
+    });
+  nodeDependencies = (pkgs.callPackage ./node2nix/default.nix { }).shell.nodeDependencies;
   program = stdenv.mkDerivation
-    rec {
-      version = "0.8.56";
+    {
+      inherit src version;
       pname = "cronicle-daemon";
-      src =
-        (pkgs.fetchFromGitHub {
-          owner = "jhuckaby";
-          repo = "Cronicle";
-          rev = "v${version}";
-          sha256 = "1pv190pm346iwbahcn787afavsrl3ddc0wh5xc3ym62gjl8c2al1";
-        });
       buildPhase = ''
-        PATH="$PATH:${pkgs.nodejs}/bin"
-        mkdir ./npm-cache
-        ${pkgs.nodejs}/bin/npm install --cache ./npm-cache
-        ${pkgs.nodejs}/bin/node bin/build.js dist
-        rm -rf ./npm-cache
+        mkdir -p $out
+        cp -r * $out
       '';
       installPhase = ''
-        mkdir -p $out
-        ${pkgs.nodejs}/bin/node ./bin/storage-cli setup
-        cp -r * $out
-        rm $out/bin/control.sh
-        cp ${./control.sh} $out/bin/control.sh
-        chmod +x $out/bin/control.sh
+        export PATH="${nodeDependencies}/bin:$PATH"
+        cd $out
+        rm ./bin/control.sh
+        cp ${./control.sh} ./bin/control.sh
+        chmod +x ./bin/control.sh
+        ln -s ${nodeDependencies}/lib/node_modules ./node_modules
+        ${pkgs.nodejs}/bin/node ./bin/build dist
       '';
     };
   env = "
@@ -42,9 +42,8 @@ let
     export CRONICLE_queue_dir=${queueDir};
     export CRONICLE_log_archive_path=${logArchiveDir};
   ";
-  cli = pkgs.writeShellScriptBin "cronicle" ''
-    ${env}
-    ${program}/bin/control.sh "$@"
-  '';
 in
-cli
+pkgs.writeShellScriptBin "cronicle" ''
+  ${env}
+  ${program}/bin/control.sh "$@"
+''
