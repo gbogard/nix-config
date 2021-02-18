@@ -41,6 +41,7 @@ let
     export CRONICLE_pid_file=${pidFile};
     export CRONICLE_queue_dir=${queueDir};
     export CRONICLE_log_archive_path=${logArchiveDir};
+    export CRONICLE_job_memory_max=0;
   ";
 in
 pkgs.writeShellScriptBin "cronicle" ''

@@ -1,0 +1,9 @@
+[Install]
+WantedBy=default.target
+
+[Service]
+Type=forking
+PIDFile=/home/guillaume/.cronicle/pid
+ExecStart=/home/guillaume/.nix-profile/bin/cronicle start
+ExecStop=/home/guillaume/.nix-profile/bin/cronicle stop
+Restart=always

@@ -55,6 +55,7 @@ chmod +x Projects/dotfiles/generate-machine.sh
 
 # Create a symlink from the dotfiles folder to the .config folder
 ln -s ~/Projects/dotfiles/.config/nixpkgs ~/.config 
+ln -s ~/Projects/dotfiles/.config/systemd ~/.config
 
 # Switch to the new config
 home-manager switch
