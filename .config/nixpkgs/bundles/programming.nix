@@ -15,6 +15,7 @@ let
     home.packages = lib.mkMerge [
       (with pkgs.haskellPackages; [
         haskell-language-server
+        Agda
       ])
       [
         ghc
