@@ -9,6 +9,7 @@ lib.mkMerge [
     home.packages = with pkgs; [
       kubectl
       cronicle
+      sqlite
     ];
   }
   (lib.mkIf (machine.operatingSystem == "Ubuntu") {
