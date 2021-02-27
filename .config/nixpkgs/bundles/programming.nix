@@ -39,7 +39,7 @@ let
   };
   javascript = with pkgs; with nodePackages; {
     home.packages = [
-      nodejs-14_x
+      unstable.nodejs
       yarn
       typescript
       serve
@@ -47,10 +47,10 @@ let
   };
   scala =
     let
-      java = pkgs.jdk11;
+      java = unstable.graalvm11-ce;
       javaOpts = { jre = java; };
       # We use an unstable version of sbt to get the sbtn thin client
-      sbt = unstable.sbt.override javaOpts;
+      sbt = (unstable.sbt.overrideAttrs (old: { installCheckPhase = ""; })).override javaOpts;
       scala = pkgs.scala.override javaOpts;
       coursier = pkgs.coursier.override javaOpts;
       bloop = pkgs.bloop.override javaOpts;
