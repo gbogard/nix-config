@@ -77,11 +77,18 @@ let
       python38Packages.pip
     ];
   };
-  rust = {
-    home.packages = [
-      pkgs.latest.rustChannels.stable.rust
-    ];
-  };
+  rust =
+    let
+      rustPkg = pkgs.latest.rustChannels.stable.rust.override {
+        extensions = [ "rust-src" ];
+      };
+    in
+    {
+      home.packages = [ rustPkg ];
+      home.sessionVariables = {
+        RUST_SRC_PATH = "${pkgs.latest.rustChannels.stable.rust-src.outPath}";
+      };
+    };
 in
 lib.mkMerge [
   haskell
