@@ -77,6 +77,11 @@ let
       python38Packages.pip
     ];
   };
+  rust = {
+    home.packages = [
+      pkgs.latest.rustChannels.stable.rust
+    ];
+  };
 in
 lib.mkMerge [
   haskell
@@ -84,6 +89,7 @@ lib.mkMerge [
   javascript
   scala
   python
+  rust
   # Imports
   (import ../packages/neovim/default.nix { inherit config;inherit lib;inherit pkgs; })
 ]
