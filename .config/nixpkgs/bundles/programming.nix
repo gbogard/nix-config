@@ -14,7 +14,6 @@ let
   haskell = with pkgs; {
     home.packages = lib.mkMerge [
       (with pkgs.haskellPackages; [
-        haskell-language-server
         Agda
       ])
       [
@@ -23,7 +22,6 @@ let
         stack
         hlint
         ormolu
-        ghcid
         cabal-install
       ]
     ];
