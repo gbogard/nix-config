@@ -32,6 +32,7 @@ let
       spago
       dhall-simple
       zephyr
+      purty
       nodePackages.purescript-language-server
     ];
   };
@@ -75,18 +76,15 @@ let
       python38Packages.pip
     ];
   };
-  rust =
-    let
-      rustPkg = pkgs.latest.rustChannels.stable.rust.override {
-        extensions = [ "rust-src" ];
-      };
-    in
-    {
-      home.packages = [ rustPkg ];
-      home.sessionVariables = {
-        RUST_SRC_PATH = "${pkgs.latest.rustChannels.stable.rust-src.outPath}";
-      };
+  rustPkg = pkgs.latest.rustChannels.stable.rust.override {
+    extensions = [ "rust-src" ];
+  };
+  rust = {
+    home.packages = [ rustPkg ];
+    home.sessionVariables = {
+      RUST_SRC_PATH = "${pkgs.latest.rustChannels.stable.rust-src.outPath}";
     };
+  };
 in
 lib.mkMerge [
   haskell
