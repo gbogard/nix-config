@@ -1,8 +1,10 @@
-{ config, pkgs, ... }:
-
+{ config }:
+let
+  inherit (import ../../pkgs.nix) pkgs;
+in
 rec {
   home.packages = [
-    ((import ./neovim-with-cd.nix) { inherit config;inherit pkgs; })
+    ((import ./neovim-with-cd.nix) { inherit config; })
   ];
   programs.zsh = {
     shellGlobalAliases = {

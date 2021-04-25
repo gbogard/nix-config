@@ -15,6 +15,8 @@ let
     home.packages = lib.mkMerge [
       (with pkgs.haskellPackages; [
         Agda
+        hoogle
+        haskell-language-server
       ])
       [
         ghc
@@ -94,5 +96,6 @@ lib.mkMerge [
   python
   rust
   # Imports
-  (import ../packages/neovim/default.nix { inherit config;inherit lib;inherit pkgs; })
+  (import ../packages/neovim/default.nix { inherit config; })
+  (import ../packages/emacs/default.nix)
 ]
