@@ -95,4 +95,5 @@ lib.mkMerge [
   rust
   # Imports
   (import ../packages/neovim/default.nix { inherit config;inherit lib;inherit pkgs; })
+  (import ../packages/rnix-lsp.nix)
 ]
