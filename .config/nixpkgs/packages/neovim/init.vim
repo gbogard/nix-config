@@ -4,6 +4,7 @@ let mapleader=' '
 lua << EOF
 require('keybindings')
 require('lsp')
+require('line')
 EOF
 
 " Clear search highlight with esc
@@ -18,3 +19,9 @@ set number
 set nobackup
 set nowritebackup
 set hidden
+
+" indent
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set smartindent

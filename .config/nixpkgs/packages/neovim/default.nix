@@ -10,6 +10,7 @@ in
   home.file.".config/nvim/lua/whichkey_setup.lua".source = ./lua/whichkey_setup.lua;
   home.file.".config/nvim/lua/keybindings.lua".source = ./lua/keybindings.lua;
   home.file.".config/nvim/lua/lsp.lua".source = ./lua/lsp.lua;
+  home.file.".config/nvim/lua/line.lua".source = ./lua/line.lua;
   programs.zsh = {
     shellGlobalAliases = {
       neovim = "nvim";
@@ -20,7 +21,7 @@ in
   programs.neovim = {
     enable = true;
     package = pkgs.neovim-unwrapped;
-    extraConfig = (builtins.readFile ./.vimrc);
+    extraConfig = (builtins.readFile ./init.vim);
     plugins = with plugins; [
       lspconfig-nvim
       completion-nvim
@@ -30,10 +31,11 @@ in
       plenary-nvim
       popup-nvim
       telescope-nvim
-      vim-airline
       nvim-web-devicons
       indentLine
       vim-startify
+      lualine-nvim
+      lsptrouble-nvim
       {
         plugin = nvim-tree-lua;
         config = ''

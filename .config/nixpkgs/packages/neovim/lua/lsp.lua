@@ -16,3 +16,5 @@ require'lspconfig'.hls.setup {on_attach = custom_attach}
 -- Completion
 require'lspconfig'.pyls.setup {on_attach = custom_attach}
 
+-- Diagnostics
+require"trouble".setup {}

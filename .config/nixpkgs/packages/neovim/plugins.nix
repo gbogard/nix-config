@@ -70,4 +70,26 @@ unstable.vimPlugins // rec {
         sha256 = "0ywhdgh6aqs0xlm8a4d9jhkik254ywagang12r5nyqxawjsmjnib";
       };
     };
+  lualine-nvim = buildVimPlugin
+    {
+      name = "lualine-nvim";
+      buildPhase = "echo build;";
+      src = fetchFromGitHub {
+        owner = "hoob3rt";
+        repo = "lualine.nvim";
+        rev = "6ba2b80b594c3ead11ab9bd1dbc94c0b4ea46c33";
+        sha256 = "0xhdc18sdlbhhyd7p898n4ymyvrhjqbsj5yzb6vmjvc4d9gln1k6";
+      };
+    };
+  lsptrouble-nvim = buildVimPlugin
+    {
+      name = "lsptrouble-nvim";
+      buildPhase = "echo build;";
+      src = fetchFromGitHub {
+        owner = "folke";
+        repo = "lsp-trouble.nvim";
+        rev = "f9dd59835e283d2e3a6d1ee616b2eb9a33f8f38a";
+        sha256 = "0r646zckw9n6r22j8bicl6qack4kpqc42aqb61vyyi4bci7pvdab";
+      };
+    };
 }
