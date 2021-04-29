@@ -37,15 +37,15 @@ unstable.vimPlugins // rec {
         sha256 = "0j1gkaba6z5vb922j47i7sq0d1zwkr5581w0nxd8c31klghg3kyn";
       };
     };
-  completion-nvim = buildVimPlugin
+  nvim-compe = buildVimPlugin
     {
-      name = "completion-nvim";
+      name = "nvim-compe";
       buildPhase = "echo build;";
       src = fetchFromGitHub {
-        owner = "nvim-lua";
-        repo = "completion-nvim";
-        rev = "8bca7aca91c947031a8f14b038459e35e1755d90";
-        sha256 = "02zqc75p9ggrz6fyiwvzpnzipfd1s5xfr7fli2yypb4kp72mrbaf";
+        owner = "hrsh7th";
+        repo = "nvim-compe";
+        rev = "99452ae6875889c12653963b68e53c4564848954";
+        sha256 = "1d5hpn3mr2h3s5h2svajbxm0n49mmc5w0sip9cpzyfdpbnv1gic3";
       };
     };
   lspconfig-nvim = buildVimPlugin
@@ -99,8 +99,8 @@ unstable.vimPlugins // rec {
       src = fetchFromGitHub {
         owner = "folke";
         repo = "which-key.nvim";
-        rev = "394ff5a37bab051857de4216ee25db2284de2196";
-        sha256 = "04cy2zc26lw5031a5y1qbxix8w9qv5anmfady57nyi1nwff9gmkb";
+        rev = "d93ef0f2f1a9a6288016a3a82f70399e350a574f";
+        sha256 = "15801wxhl227n3gg2a9bh849jr7z8y9m9mlrycnmqxskfrwzy06m";
       };
     };
   barbar-nvim = buildVimPlugin
@@ -112,6 +112,19 @@ unstable.vimPlugins // rec {
         repo = "barbar.nvim";
         rev = "e640b28610e68696095c72a4fb89c5930dde97ab";
         sha256 = "15fh7lgpkk453jkbazaby751p78ppgqw0l5zrdd54g8cvk4y1yil";
+      };
+    };
+  nvim-tree-lua = buildVimPlugin
+    {
+      name = "nvim-tree-lua";
+      pname = "nvim-tree-lua";
+      version = "";
+      buildPhase = "echo build;";
+      src = fetchFromGitHub {
+        owner = "kyazdani42";
+        repo = "nvim-tree.lua";
+        rev = "f39869514645b98ec30bc8826763c288b6cbdbef";
+        sha256 = "0z6arqc2i8745vc08hdbwsm1i4biywq65v1zdzrhs3ysx0agppq0";
       };
     };
 }

@@ -1,6 +1,9 @@
 " set leader key
 let mapleader=' '
 
+set updatetime=500
+set timeoutlen=1000 ttimeoutlen=0
+
 lua << EOF
 require('keybindings')
 require('lsp')
@@ -26,3 +29,5 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set smartindent
+
+set completeopt=menuone,noselect

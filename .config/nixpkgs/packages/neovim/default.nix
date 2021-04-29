@@ -25,7 +25,7 @@ in
     plugins = with plugins; [
       barbar-nvim
       lspconfig-nvim
-      completion-nvim
+      nvim-compe
       lspsaga-nvim
       whichkey-nvim
       vim-nix
@@ -37,6 +37,7 @@ in
       vim-startify
       lualine-nvim
       lsptrouble-nvim
+      gitgutter
       {
         plugin = haskell-vim;
         config = ''
@@ -54,6 +55,8 @@ in
         config = ''
           let g:nvim_tree_side = 'right'
           let g:nvim_tree_auto_close = 1
+          let g:nvim_tree_group_empty = 1
+          let g:nvim_tree_lsp_diagnostics = 1
         '';
       }
       {
