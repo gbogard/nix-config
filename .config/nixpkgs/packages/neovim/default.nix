@@ -1,4 +1,4 @@
-{ config, }:
+{ config, ... }:
 let
   inherit (import ../../pkgs.nix) pkgs unstable;
   plugins = (import ./plugins.nix);
@@ -15,6 +15,7 @@ in
       neovim = "nvim";
       vi = "nvim";
       vim = "nvim";
+      v = "nvim";
     };
   };
   programs.neovim = {
@@ -22,6 +23,7 @@ in
     package = pkgs.neovim-unwrapped;
     extraConfig = (builtins.readFile ./init.vim);
     plugins = with plugins; [
+      barbar-nvim
       lspconfig-nvim
       completion-nvim
       lspsaga-nvim
@@ -45,7 +47,7 @@ in
           let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
           let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
           let g:haskell_backpack = 1  
-          '';
+        '';
       }
       {
         plugin = nvim-tree-lua;

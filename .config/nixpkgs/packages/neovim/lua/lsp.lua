@@ -13,6 +13,8 @@ require'lspsaga'.init_lsp_saga()
 require'lspconfig'.metals.setup {on_attach = custom_attach}
 -- Haskell
 require'lspconfig'.hls.setup {on_attach = custom_attach}
+-- Nix
+require'lspconfig'.rnix.setup{}
 -- Completion
 require'lspconfig'.pyls.setup {on_attach = custom_attach}
 

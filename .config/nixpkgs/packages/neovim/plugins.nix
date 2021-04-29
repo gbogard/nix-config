@@ -103,4 +103,15 @@ unstable.vimPlugins // rec {
         sha256 = "04cy2zc26lw5031a5y1qbxix8w9qv5anmfady57nyi1nwff9gmkb";
       };
     };
+  barbar-nvim = buildVimPlugin
+    {
+      name = "barbar-nvim";
+      buildPhase = "echo build;";
+      src = fetchFromGitHub {
+        owner = "romgrk";
+        repo = "barbar.nvim";
+        rev = "e640b28610e68696095c72a4fb89c5930dde97ab";
+        sha256 = "15fh7lgpkk453jkbazaby751p78ppgqw0l5zrdd54g8cvk4y1yil";
+      };
+    };
 }

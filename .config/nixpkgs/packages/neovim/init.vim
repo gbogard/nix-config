@@ -15,6 +15,7 @@ set foldmethod=syntax
 set foldopen-=block
 set nofoldenable
 
+set mouse=a
 set number
 set nobackup
 set nowritebackup
