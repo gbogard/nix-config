@@ -1,6 +1,7 @@
 require('lualine').setup {
   options = {
-    theme = 'oceanicnext'
+    theme = 'palenight',
+    section_separators = ''
   },
   sections = {
     lualine_a = {'mode'},

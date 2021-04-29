@@ -92,4 +92,15 @@ unstable.vimPlugins // rec {
         sha256 = "0r646zckw9n6r22j8bicl6qack4kpqc42aqb61vyyi4bci7pvdab";
       };
     };
+  whichkey-nvim = buildVimPlugin
+    {
+      name = "whichkey-nvim";
+      buildPhase = "echo build;";
+      src = fetchFromGitHub {
+        owner = "folke";
+        repo = "which-key.nvim";
+        rev = "394ff5a37bab051857de4216ee25db2284de2196";
+        sha256 = "04cy2zc26lw5031a5y1qbxix8w9qv5anmfady57nyi1nwff9gmkb";
+      };
+    };
 }
