@@ -17,12 +17,12 @@ let
         Agda
       ])
       [
-        ghc
         idris2
         stack
         hlint
         ormolu
         cabal-install
+        unstable.haskell-language-server
       ]
     ];
   };
@@ -53,7 +53,7 @@ let
       scala = pkgs.scala.override javaOpts;
       coursier = pkgs.coursier.override javaOpts;
       bloop = pkgs.bloop.override javaOpts;
-      metals = pkgs.metals.override javaOpts;
+      metals = unstable.metals.override javaOpts;
       scalafmt = pkgs.scalafmt.override javaOpts;
       maven = pkgs.maven.override { jdk = java; };
     in

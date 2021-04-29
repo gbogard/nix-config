@@ -60,25 +60,13 @@ with pkgs; lib.mkMerge [
         ls = "exa";
       };
     };
-    programs.tmux = {
-      enable = true;
-      newSession = true;
-      keyMode = "vi";
-      extraConfig = ''
-        unbind C-b
-        set -g prefix C-Space
-        bind Space send-prefix
-        set -g mouse on
-        bind | split-window -h -c "#{pane_current_path}"
-        bind - split-window -v -c "#{pane_current_path}"
-      '';
-    };
     home.packages = [
       starship
       exa
       procs
       tokei
       bash
+      curl
     ];
   }
   (lib.mkIf (machine.operatingSystem == "Darwin") {

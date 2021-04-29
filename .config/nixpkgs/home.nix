@@ -35,6 +35,33 @@ lib.mkMerge [
     # changes in each release.
     home.stateVersion = "21.03";
   }
+  # Make mac apps available in /Applications automatically
+  # See https://github.com/nix-community/home-manager/issues/1341
+  (lib.mkIf (machine.operatingSystem == "Darwin")
+    {
+      home.activation = {
+        copyApplications =
+          let
+            apps = pkgs.buildEnv {
+              name = "home-manager-applications";
+              paths = config.home.packages;
+              pathsToLink = "/Applications";
+            };
+          in
+          lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+            baseDir="$HOME/Applications/Home Manager Apps"
+            if [ -d "$baseDir" ]; then
+              rm -rf "$baseDir"
+            fi
+            mkdir -p "$baseDir"
+            for appFile in ${apps}/Applications/*; do
+              target="$baseDir/$(basename "$appFile")"
+              $DRY_RUN_CMD cp ''${VERBOSE_ARG:+-v} -fHRL "$appFile" "$baseDir"
+              $DRY_RUN_CMD chmod ''${VERBOSE_ARG:+-v} -R +w "$target"
+            done
+          '';
+      };
+    })
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   (lib.mkIf (machine.hostname == "nananas-xubuntu") {
@@ -46,6 +73,7 @@ lib.mkMerge [
     home.homeDirectory = "/Users/guillaumebogard";
   })
   # Imports
+  (import ./bundles/apps.nix { inherit lib; })
   (import ./bundles/shell.nix { inherit lib; })
   (import ./bundles/programming.nix { inherit config;inherit lib; })
   (import ./bundles/ops.nix { inherit lib; })
