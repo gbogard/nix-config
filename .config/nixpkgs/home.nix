@@ -6,13 +6,17 @@ lib.mkMerge [
   {
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
-
     programs.git = {
       enable = true;
       userName = "Guillaume Bogard";
       userEmail = "hey@guillaumebogard.dev";
-      extraConfig.core.editor = "nvim";
+      extraConfig = {
+        core.editor = "nvim";
+        core.exludesFile = "~/.config/git/ignore";
+        pull.rebase = "false";
+      };
     };
+    home.file.".config/git/ignore".source = ./gitignore;
 
     home.packages = with pkgs; [
       htop

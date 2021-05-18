@@ -67,6 +67,7 @@ with pkgs; lib.mkMerge [
       tokei
       bash
       curl
+      ripgrep
     ];
   }
   (lib.mkIf (machine.operatingSystem == "Darwin") {

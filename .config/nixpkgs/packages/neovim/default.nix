@@ -24,6 +24,7 @@ in
     extraConfig = (builtins.readFile ./init.vim);
     plugins = with plugins; [
       barbar-nvim
+      quickfix-reflector-vim
       lspconfig-nvim
       nvim-compe
       lspsaga-nvim
@@ -33,11 +34,17 @@ in
       popup-nvim
       telescope-nvim
       nvim-web-devicons
-      indentLine
       vim-startify
       lualine-nvim
       lsptrouble-nvim
       gitgutter
+      {
+        plugin = indentLine;
+        config = ''
+          let g:indentLine_conceallevel = 0
+          set conceallevel=2
+        '';
+      }
       {
         plugin = haskell-vim;
         config = ''
@@ -66,6 +73,15 @@ in
           syntax on
           set background=dark
           colorscheme palenight
+        '';
+      }
+      {
+        plugin = ack-vim;
+        config = ''
+          let g:ackprg = 'rg --vimgrep --smart-case'
+          let g:ack_autoclose = 1
+          " Don't jump to first match
+          cnoreabbrev Ack Ack!
         '';
       }
     ];

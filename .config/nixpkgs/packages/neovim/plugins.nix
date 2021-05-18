@@ -123,8 +123,8 @@ unstable.vimPlugins // rec {
       src = fetchFromGitHub {
         owner = "kyazdani42";
         repo = "nvim-tree.lua";
-        rev = "f39869514645b98ec30bc8826763c288b6cbdbef";
-        sha256 = "0z6arqc2i8745vc08hdbwsm1i4biywq65v1zdzrhs3ysx0agppq0";
+        rev = "825cf570bfe833cbf8a44b619364e45ad3616382";
+        sha256 = "1wnknr84p2mrqi4pwsd0rgk94szizr2bc69zpnqv9kvh8iq4j7bw";
       };
     };
 }
