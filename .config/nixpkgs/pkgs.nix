@@ -1,4 +1,24 @@
 rec {
+  metals_overlay = self: super: {
+    metals = super.metals.overrideAttrs (old: rec {
+      version = "0.10.3";
+      deps = self.stdenv.mkDerivation {
+        name = "${old.pname}-deps-${version}";
+        buildCommand = ''
+          export COURSIER_CACHE=$(pwd)
+          ${self.coursier}/bin/coursier fetch org.scalameta:metals_2.12:${version} \
+            -r bintray:scalacenter/releases \
+            -r sonatype:snapshots > deps
+          mkdir -p $out/share/java
+          cp -n $(< deps) $out/share/java/
+        '';
+        outputHashMode = "recursive";
+        outputHashAlgo = "sha256";
+        outputHash = "1psmsiwd3xlbrvkdvr2zgs2b66kw8w2jvvqa399g7jhixh2fpbx4";
+      };
+      buildInputs = [ self.jdk deps ];
+    });
+  };
   moz_overlay = import (builtins.fetchTarball {
     url = "https://github.com/mozilla/nixpkgs-mozilla/archive/master.tar.gz";
     sha256 = "1zybp62zz0h077zm2zmqs2wcg3whg6jqaah9hcl1gv4x8af4zhs6";
@@ -21,5 +41,5 @@ rec {
         url = "https://github.com/NixOS/nixpkgs/archive/d0bb138fbc33b23dd19155fa218f61eed3cb685f.tar.gz";
         sha256 = "0dym3kg1wwl2npp3l3z7q8mk269kib0yphky2zb16ph42gbyly7l";
       })
-      { overlays = [ neovim_overlay ]; };
+      { overlays = [ neovim_overlay metals_overlay ]; };
 }
