@@ -67,12 +67,12 @@ in
         '';
       }
       {
-        plugin = palenight-vim;
+        plugin = gruvbox;
         config = ''
           set termguicolors
           syntax on
           set background=dark
-          colorscheme palenight
+          colorscheme gruvbox
         '';
       }
       {
