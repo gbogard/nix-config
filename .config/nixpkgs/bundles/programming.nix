@@ -88,12 +88,13 @@ let
 in
 lib.mkMerge [
   haskell
-  purescript
+  # purescript
   javascript
   scala
   python
-  rust
+  # rust
   # Imports
   (import ../packages/neovim/default.nix { inherit config; })
+  (import ../packages/intellij/default.nix)
   (import ../packages/rnix-lsp.nix)
 ]

@@ -14,6 +14,7 @@ lib.mkMerge [
         core.editor = "nvim";
         core.exludesFile = "~/.config/git/ignore";
         pull.rebase = "false";
+        http.sslVerify = "false";
       };
     };
     home.file.".config/git/ignore".source = ./gitignore;
@@ -69,12 +70,16 @@ lib.mkMerge [
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   (lib.mkIf (machine.hostname == "nananas-xubuntu") {
-    home.username = "guillaune";
+    home.username = "guillaume";
     home.homeDirectory = "/home/guillaume";
   })
   (lib.mkIf (machine.hostname == "MBPdeGuillaume") {
     home.username = "guillaumebogard";
     home.homeDirectory = "/Users/guillaumebogard";
+  })
+  (lib.mkIf (machine.hostname == "FRPARMAC2102331") {
+    home.username = "gbogard";
+    home.homeDirectory = "/Users/gbogard";
   })
   # Imports
   (import ./bundles/apps.nix { inherit lib; })
