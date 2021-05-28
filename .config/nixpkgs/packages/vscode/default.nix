@@ -1,5 +1,6 @@
 let
   inherit (import ../../pkgs.nix) unstable;
+  extensions = (import ./extensions.nix);
 in
 {
   programs.vscode = {
@@ -9,12 +10,12 @@ in
       "update.channel" = "none";
       "editor.tabSize" = 2;
       "workbench.sideBar.location" = "right";
+      "workbench.colorTheme" = "Gruvbox Material Dark";
+      "editor.fontFamily" = "Fira Code";
+      "editor.fontLigatures" = true;
+      "editor.fontSize" = 14;
+      "redhat.telemetry.enabled" = false;
     };
-    extensions = with unstable.vscode-extensions; [
-      dbaeumer.vscode-eslint
-      scalameta.metals
-      haskell.haskell
-      vscodevim.vim
-    ];
+    extensions = extensions;
   };
 }
