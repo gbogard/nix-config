@@ -23,6 +23,8 @@ in
     package = pkgs.neovim-unwrapped;
     extraConfig = (builtins.readFile ./init.vim);
     plugins = with plugins; [
+      nerdcommenter
+      vim-visual-multi
       barbar-nvim
       quickfix-reflector-vim
       lspconfig-nvim
