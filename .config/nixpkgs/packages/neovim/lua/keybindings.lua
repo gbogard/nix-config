@@ -30,7 +30,8 @@ local keymap = {
             c = {'<Cmd>Telescope git_bcommits<CR>', 'bcommits'},
             b = {'<Cmd>Telescope git_branches<CR>', 'branches'},
             s = {'<Cmd>Telescope git_status<CR>', 'status'}
-        }
+        },
+        h = {'<Cmd>call system(\'open https://hoogle.haskell.org/\')<CR>', 'Open Hoogle'}
     }
 }
 
