@@ -22,5 +22,5 @@ let
   };
 in
 {
-  home.packages = [ intellijWithApp ];
+  home.packages = [ intellij intellijWithApp ];
 }
