@@ -21,6 +21,7 @@ local keymap = {
             name = "File",
             t = {'<Cmd>NvimTreeToggle<CR>', 'tree'},
             f = {'<Cmd>Telescope find_files<CR>', 'find'},
+            g = {'<Cmd>Telescope live_grep<CR>', 'grep'},
             t = {'<Cmd>:NvimTreeFindFile<CR>', 'reveal in tree'},
             w = {':w!<CR>', 'save'}
         },
@@ -31,7 +32,7 @@ local keymap = {
             b = {'<Cmd>Telescope git_branches<CR>', 'branches'},
             s = {'<Cmd>Telescope git_status<CR>', 'status'}
         },
-        h = {'<Cmd>call system(\'open https://hoogle.haskell.org/\')<CR>', 'Open Hoogle'}
+        h = {'<Cmd>HoogleOpen<CR>', 'Open Hoogle'}
     }
 }
 
