@@ -31,3 +31,6 @@ set expandtab
 set smartindent
 
 set completeopt=menuone,noselect
+
+" custom commands
+command HoogleOpen call system('open https://hoogle.haskell.org/')
