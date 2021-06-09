@@ -1,20 +1,14 @@
 { lib, ... }:
 let
-  inherit (import ../pkgs.nix) pkgs;
+  inherit (import ../pkgs.nix) unstable;
   machine = (import ../machine.nix);
-  cronicle = (import ../packages/cronicle/default.nix);
 in
 lib.mkMerge [
   {
-    home.packages = with pkgs; [
+    home.packages = with unstable; [
       kubectl
-      cronicle
+      awscli2
       sqlite
     ];
   }
-  (lib.mkIf (machine.operatingSystem == "Ubuntu") {
-    home.packages = [
-      pkgs.docker
-    ];
-  })
 ]
