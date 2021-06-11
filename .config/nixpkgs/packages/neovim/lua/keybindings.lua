@@ -21,7 +21,7 @@ local keymap = {
             name = "File",
             t = {'<Cmd>NvimTreeToggle<CR>', 'tree'},
             f = {'<Cmd>Telescope find_files<CR>', 'find'},
-            g = {'<Cmd>Telescope live_grep<CR>', 'find'},
+            g = {'<Cmd>Telescope live_grep<CR>', 'grep'},
             t = {'<Cmd>:NvimTreeFindFile<CR>', 'reveal in tree'},
             w = {':w!<CR>', 'save'}
         },
