@@ -84,16 +84,41 @@ let
       RUST_SRC_PATH = "${pkgs.latest.rustChannels.stable.rust-src.outPath}";
     };
   };
+  git = {
+    programs.git = {
+      enable = true;
+      userName = "Guillaume Bogard";
+      userEmail = "hey@guillaumebogard.dev";
+      extraConfig = {
+        core.editor = "nvim";
+        core.exludesFile = "~/.config/git/ignore";
+        pull.rebase = "false";
+        http.sslVerify = "false";
+      };
+    };
+  };
+  neovim = (import ../packages/neovim/default.nix { inherit config; });
+  rnixLsp = (import ../packages/rnix-lsp.nix);
 in
-lib.mkMerge [
-  haskell
-  purescript
-  javascript
-  scala
-  python
-  rust
-  # Imports
-  (import ../packages/neovim/default.nix { inherit config; })
-  (import ../packages/intellij/default.nix)
-  (import ../packages/rnix-lsp.nix)
-]
+{
+  inherit haskell;
+  inherit purescript;
+  inherit javascript;
+  inherit scala;
+  inherit python;
+  inherit rust;
+  inherit git;
+  inherit neovim;
+  inherit rnixLsp;
+  all = lib.mkMerge [
+    haskell
+    purescript
+    javascript
+    scala
+    python
+    rust
+    git
+    neovim
+    rnixLsp
+  ];
+}
