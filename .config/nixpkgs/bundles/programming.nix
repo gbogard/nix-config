@@ -85,6 +85,7 @@ let
     };
   };
   git = {
+    home.packages = [unstable.delta];
     programs.git = {
       enable = true;
       userName = "Guillaume Bogard";
@@ -94,6 +95,17 @@ let
         core.exludesFile = "~/.config/git/ignore";
         pull.rebase = "false";
         http.sslVerify = "false";
+        pager = {
+          diff = "delta";
+          log = "delta";
+          reflog = "delta";
+          show = "delta";
+        };
+        delta = {
+          features = "line-numbers decorations";
+          navigate = true;
+        };
+        interactive.diffFilter = "delta --color-only";
       };
     };
   };
