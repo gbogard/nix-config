@@ -23,6 +23,7 @@ in
     package = pkgs.neovim-unwrapped;
     extraConfig = (builtins.readFile ./init.vim);
     plugins = with plugins; [
+      gruvbox
       fugitive
       nerdcommenter
       vim-visual-multi
@@ -67,15 +68,6 @@ in
           let g:nvim_tree_auto_close = 1
           let g:nvim_tree_group_empty = 1
           let g:nvim_tree_lsp_diagnostics = 1
-        '';
-      }
-      {
-        plugin = gruvbox;
-        config = ''
-          set termguicolors
-          syntax on
-          set background=dark
-          colorscheme gruvbox
         '';
       }
       {
