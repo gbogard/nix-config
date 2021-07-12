@@ -29,6 +29,7 @@ in
       barbar-nvim
       quickfix-reflector-vim
       lspconfig-nvim
+      lspkind-nvim
       nvim-compe
       lspsaga-nvim
       whichkey-nvim
@@ -39,6 +40,7 @@ in
       nvim-web-devicons
       vim-startify
       lualine-nvim
+      purescript-vim
       lsptrouble-nvim
       gitgutter
       {

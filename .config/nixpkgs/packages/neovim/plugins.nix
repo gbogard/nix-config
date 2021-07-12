@@ -11,8 +11,8 @@ unstable.vimPlugins // rec {
       src = fetchFromGitHub {
         owner = "nvim-lua";
         repo = "plenary.nvim";
-        rev = "a0240b98c0e9ed9b1e0737ca0615d731912c2283";
-        sha256 = "11dabihmzymwmrlh58yb0cibh91pbrb0xni4x5cjfi6m14sclrmq";
+        rev = "8bae2c1fadc9ed5bfcfb5ecbd0c0c4d7d40cb974";
+        sha256 = "1axvjv6n77afkjqk914dpc020kxd7mig6m5sr916k1n1q35jc4ny";
       };
     };
   telescope-nvim = buildVimPlugin
@@ -22,8 +22,8 @@ unstable.vimPlugins // rec {
       src = fetchFromGitHub {
         owner = "nvim-telescope";
         repo = "telescope.nvim";
-        rev = "6fd1b3bd255a6ebc2e44cec367ff60ce8e6e6cab";
-        sha256 = "1qifrnd0fq9844vvxy9fdp90kkb094a04wcshbfdy4cv489cqfax";
+        rev = "5692edd004fed1dbd55c90775c34a051298724e7";
+        sha256 = "0mzgbnm9ic173spnm9w9da7yl79fqg6p7s1sv0w3d3m7qqvz0bpz";
       };
     };
   popup-nvim = buildVimPlugin
@@ -33,8 +33,8 @@ unstable.vimPlugins // rec {
       src = fetchFromGitHub {
         owner = "nvim-lua";
         repo = "popup.nvim";
-        rev = "bc98ca6df9179452c368f0d7bac821a8fd4c01ac";
-        sha256 = "0j1gkaba6z5vb922j47i7sq0d1zwkr5581w0nxd8c31klghg3kyn";
+        rev = "5e3bece7b4b4905f4ec89bee74c09cfd8172a16a";
+        sha256 = "1k6rz652fjkzhjd8ljr0l6vfispanrlpq0r4aya4qswzxni4rxhg";
       };
     };
   nvim-compe = buildVimPlugin

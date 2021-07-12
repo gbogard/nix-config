@@ -24,8 +24,8 @@ rec {
     sha256 = "1zybp62zz0h077zm2zmqs2wcg3whg6jqaah9hcl1gv4x8af4zhs6";
   });
   neovim_overlay = import (builtins.fetchTarball {
-    url = "https://github.com/nix-community/neovim-nightly-overlay/archive/57f49436ec18c7a3f883b8ba3bcfc5ce558c28fa.tar.gz";
-    sha256 = "1ij0lapzp4c7d6q21j15p9qybrm5ndb6ljhy15p8zirdfh581b9s";
+    url = "https://github.com/nix-community/neovim-nightly-overlay/archive/c2a8577b755101ba3cd5d8b20a1a46f231b76a11.tar.gz";
+    sha256 = "0bjsrjic21pi93yiv3kiabhs43hf4c2vv5ypqp4nvc602wgxrqa7";
   });
   pkgs =
     (import

@@ -7,6 +7,7 @@ end
 
 require'lspsaga'.init_lsp_saga()
 
+
 -- Completion
 require'compe'.setup {
   enabled = true;
@@ -32,6 +33,33 @@ require'compe'.setup {
   };
 }
 
+-- Completion symbols
+require('lspkind').init({
+    with_text = true,
+    symbol_map = {
+      Text = '',
+      Method = 'ƒ',
+      Function = '',
+      Constructor = '',
+      Variable = '',
+      Class = '',
+      Interface = 'ﰮ',
+      Module = '',
+      Property = '',
+      Unit = '',
+      Value = '',
+      Enum = '了',
+      Keyword = '',
+      Snippet = '﬌',
+      Color = '',
+      File = '',
+      Folder = '',
+      EnumMember = '',
+      Constant = '',
+      Struct = ''
+    }
+})
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -47,6 +75,8 @@ require'lspconfig'.metals.setup(serverOptions)
 require'lspconfig'.hls.setup(serverOptions)
 -- Nix
 require'lspconfig'.rnix.setup(serverOptions)
+-- Purescript
+require'lspconfig'.purescriptls.setup(serverOptions)
 
 -- Diagnostics
 require"trouble".setup {}
