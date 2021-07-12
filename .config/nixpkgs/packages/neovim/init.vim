@@ -4,12 +4,6 @@ let mapleader=' '
 set updatetime=500
 set timeoutlen=1000 ttimeoutlen=0
 
-lua << EOF
-require('keybindings')
-require('lsp')
-require('line')
-EOF
-
 " Clear search highlight with esc
 nnoremap <esc> :noh<return><esc>
 
@@ -34,3 +28,16 @@ set completeopt=menuone,noselect
 
 " custom commands
 command HoogleOpen call system('open https://hoogle.haskell.org/')
+
+set termguicolors
+syntax on
+set background=dark
+colorscheme gruvbox
+
+lua << EOF
+require('keybindings')
+require('lsp')
+require('line')
+EOF
+
+

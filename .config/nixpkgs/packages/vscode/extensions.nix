@@ -25,4 +25,10 @@ with unstable.vscode-extensions; [
     version = "0.0.6";
     sha256 = "1b8nlhbrsg3kj27f1kgj8n5ak438lcfq5v5zlgf1hzisnhmcda5n";
   }
+  {
+    name ="remote-ssh";
+    publisher = "ms-vscode-remote";
+    version = "0.65.7";
+    sha256 = "10ynl4pzlxy2k8f2zk3nfkp81br12a2aa6hzpd3zfnpwg6zc91mf";
+  }
 ]

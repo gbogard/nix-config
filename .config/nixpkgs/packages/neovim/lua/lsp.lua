@@ -68,15 +68,21 @@ local serverOptions = {
   init_options = { usePlaceholders = true },
   capabilities = capabilities
 }
+local lspconfig = require "lspconfig"
 
 -- Scala
-require'lspconfig'.metals.setup(serverOptions)
+lspconfig.metals.setup(serverOptions)
 -- Haskell
-require'lspconfig'.hls.setup(serverOptions)
+lspconfig.hls.setup(serverOptions)
 -- Nix
-require'lspconfig'.rnix.setup(serverOptions)
+lspconfig.rnix.setup(serverOptions)
 -- Purescript
-require'lspconfig'.purescriptls.setup(serverOptions)
+lspconfig.purescriptls.setup(serverOptions)
+-- Rescript
+lspconfig.rescriptls.setup{
+  cmd = { 'node', vim.env.HOME .. '/.nix-profile/rescriptls/extension/server/out/server.js', '--stdio'};
+  root_dir = lspconfig.util.root_pattern("bsconfig.json", ".git");
+}
 
 -- Diagnostics
 require"trouble".setup {}

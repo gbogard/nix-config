@@ -6,6 +6,7 @@ in
 {
   home.packages = [
     ((import ./neovim-with-cd.nix) { inherit config; })
+    (import ./rescriptls.nix)
   ];
   home.file.".config/nvim/lua/keybindings.lua".source = ./lua/keybindings.lua;
   home.file.".config/nvim/lua/lsp.lua".source = ./lua/lsp.lua;
@@ -23,6 +24,7 @@ in
     package = pkgs.neovim-unwrapped;
     extraConfig = (builtins.readFile ./init.vim);
     plugins = with plugins; [
+      gruvbox
       fugitive
       nerdcommenter
       vim-visual-multi
@@ -43,6 +45,7 @@ in
       purescript-vim
       lsptrouble-nvim
       gitgutter
+      vim-rescript
       {
         plugin = indentLine;
         config = ''
@@ -69,15 +72,6 @@ in
           let g:nvim_tree_auto_close = 1
           let g:nvim_tree_group_empty = 1
           let g:nvim_tree_lsp_diagnostics = 1
-        '';
-      }
-      {
-        plugin = gruvbox;
-        config = ''
-          set termguicolors
-          syntax on
-          set background=dark
-          colorscheme gruvbox
         '';
       }
       {
