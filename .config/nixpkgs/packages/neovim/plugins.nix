@@ -55,8 +55,8 @@ unstable.vimPlugins // rec {
       src = fetchFromGitHub {
         owner = "neovim";
         repo = "nvim-lspconfig";
-        rev = "0840c91e25557a47ed559d2281b0b65fe33b271f";
-        sha256 = "1k34khp227g9xffnz0sr9bm6h3hnvi3g9csxynpdzd0s2sbjsfgk";
+        rev = "cfab466847e0874f03cf5b1bfbd89286827c537c";
+        sha256 = "176blqdih86xa8sw65klfs63pqqbyl9mkckcwqgcfy6gfy3y671f";
       };
     };
   lspsaga-nvim = buildVimPlugin
@@ -101,6 +101,17 @@ unstable.vimPlugins // rec {
         repo = "which-key.nvim";
         rev = "d93ef0f2f1a9a6288016a3a82f70399e350a574f";
         sha256 = "15801wxhl227n3gg2a9bh849jr7z8y9m9mlrycnmqxskfrwzy06m";
+      };
+    };
+  vim-rescript = buildVimPlugin
+    {
+      name = "vim-rescript";
+      buildPhase = "echo build;";
+      src = fetchFromGitHub {
+        owner = "rescript-lang";
+        repo = "vim-rescript";
+        rev = "b8714edb8fe5ff2b7e32ced3bdeddd31ed08b02e";
+        sha256 = "1qzf1g00abj658nvp45nkzjwwdwhbhswpdndrwzsf7y3h2knjlx0";
       };
     };
   barbar-nvim = buildVimPlugin

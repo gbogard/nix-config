@@ -6,6 +6,7 @@ in
 {
   home.packages = [
     ((import ./neovim-with-cd.nix) { inherit config; })
+    (import ./rescriptls.nix)
   ];
   home.file.".config/nvim/lua/keybindings.lua".source = ./lua/keybindings.lua;
   home.file.".config/nvim/lua/lsp.lua".source = ./lua/lsp.lua;
@@ -42,6 +43,7 @@ in
       lualine-nvim
       lsptrouble-nvim
       gitgutter
+      vim-rescript
       {
         plugin = indentLine;
         config = ''
