@@ -19,10 +19,9 @@ local keymap = {
         b = {name = 'Buffer', f = {'<Cmd>Telescope buffers<CR>', 'find'}},
         f = {
             name = "File",
-            t = {'<Cmd>NvimTreeToggle<CR>', 'tree'},
             f = {'<Cmd>Telescope find_files<CR>', 'find'},
             g = {'<Cmd>Telescope live_grep<CR>', 'grep'},
-            t = {'<Cmd>:NvimTreeFindFile<CR>', 'reveal in tree'},
+            t = {'<Cmd>:NvimTreeOpen<CR><Cmd>:NvimTreeFindFile<CR>', 'reveal in tree'},
             w = {':w!<CR>', 'save'}
         },
         g = {
