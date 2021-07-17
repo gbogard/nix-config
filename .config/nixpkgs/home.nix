@@ -67,7 +67,8 @@ let
       programming.neovim
       programming.haskell
       programming.git
-      programming.javascript
+      programming.web
+      programming.nix
       ops
       apps
     ];

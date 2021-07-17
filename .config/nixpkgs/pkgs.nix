@@ -19,9 +19,9 @@ rec {
       buildInputs = [ self.jdk deps ];
     });
   };
-  moz_overlay = import (builtins.fetchTarball {
-    url = "https://github.com/mozilla/nixpkgs-mozilla/archive/master.tar.gz";
-    sha256 = "1zybp62zz0h077zm2zmqs2wcg3whg6jqaah9hcl1gv4x8af4zhs6";
+  rust_overlay = import (builtins.fetchTarball {
+    url = "https://github.com/oxalica/rust-overlay/archive/462835d47b901e8d5b445642940de40f6344f4f3.tar.gz";
+    sha256 = "0wjy48l5527za83hmhdlzzw805hy3skwp0w63a7z33ip33yi8sd8";
   });
   neovim_overlay = import (builtins.fetchTarball {
     url = "https://github.com/nix-community/neovim-nightly-overlay/archive/c2a8577b755101ba3cd5d8b20a1a46f231b76a11.tar.gz";
@@ -34,7 +34,7 @@ rec {
         url = "https://github.com/NixOS/nixpkgs/archive/20.09.tar.gz";
         sha256 = "1wg61h4gndm3vcprdcg7rc4s1v3jkm5xd7lw8r2f67w502y94gcy";
       })
-      { overlays = [ moz_overlay neovim_overlay ]; });
+      { overlays = [ rust_overlay neovim_overlay ]; });
   unstable =
     import
       (builtins.fetchTarball {

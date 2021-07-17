@@ -1,6 +1,8 @@
 { lib, config, ... }:
 let
   inherit (import ../pkgs.nix) unstable pkgs;
+  nodePackages' = (import ../packages/node-packages/default.nix { inherit pkgs; });
+  rescriptLsp = (import ../packages/rescript-lsp.nix);
   easy-ps = import
     (pkgs.fetchFromGitHub {
       owner = "justinwoo";
@@ -11,6 +13,12 @@ let
     {
       inherit pkgs;
     };
+  reason = {
+    home.packages = [ rescriptLsp ];
+  };
+  nix = with unstable; {
+    home.packages = [ rnix-lsp ];
+  };
   haskell = with pkgs; {
     home.packages = lib.mkMerge [
       (with pkgs.haskellPackages; [
@@ -35,12 +43,13 @@ let
       nodePackages.purescript-language-server
     ];
   };
-  javascript = with pkgs; with nodePackages; {
+  web = with pkgs; with nodePackages; {
     home.packages = [
       unstable.nodejs
       yarn
       typescript
       serve
+      nodePackages'.vscode-langservers-extracted
     ];
   };
   scala =
@@ -75,17 +84,11 @@ let
       python38Packages.pip
     ];
   };
-  rustPkg = pkgs.latest.rustChannels.stable.rust.override {
-    extensions = [ "rust-src" ];
-  };
-  rust = {
-    home.packages = [ rustPkg ];
-    home.sessionVariables = {
-      RUST_SRC_PATH = "${pkgs.latest.rustChannels.stable.rust-src.outPath}";
-    };
+  rust = with pkgs; {
+    home.packages = [ rust-bin.stable.latest.default ];
   };
   git = {
-    home.packages = [unstable.delta];
+    home.packages = [ unstable.delta ];
     programs.git = {
       enable = true;
       userName = "Guillaume Bogard";
@@ -110,27 +113,26 @@ let
     };
   };
   neovim = (import ../packages/neovim/default.nix { inherit config; });
-  rnixLsp = (import ../packages/rnix-lsp.nix);
 in
 {
   inherit haskell;
   inherit purescript;
-  inherit javascript;
+  inherit web;
   inherit scala;
-  inherit python;
   inherit rust;
+  inherit python;
   inherit git;
   inherit neovim;
-  inherit rnixLsp;
+  inherit nix;
   all = lib.mkMerge [
     haskell
     purescript
-    javascript
+    web
+    rust
     scala
     python
-    rust
     git
     neovim
-    rnixLsp
+    nix
   ];
 }

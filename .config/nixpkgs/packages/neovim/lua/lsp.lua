@@ -7,7 +7,6 @@ end
 
 require'lspsaga'.init_lsp_saga()
 
-
 -- Completion
 require'compe'.setup {
   enabled = true;
@@ -82,6 +81,14 @@ lspconfig.purescriptls.setup(serverOptions)
 lspconfig.rescriptls.setup{
   cmd = { 'node', vim.env.HOME .. '/.nix-profile/rescriptls/extension/server/out/server.js', '--stdio'};
   root_dir = lspconfig.util.root_pattern("bsconfig.json", ".git");
+}
+-- CSS
+lspconfig.cssls.setup{
+  cmd = {vim.env.HOME .. '/.nix-profile/bin/vscode-css-language-server', '--stdio'}
+}
+-- JSON
+lspconfig.jsonls.setup{
+  cmd = {vim.env.HOME .. '/.nix-profile/bin/vscode-json-language-server', '--stdio'}
 }
 
 -- Diagnostics
