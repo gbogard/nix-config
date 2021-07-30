@@ -29,15 +29,3 @@ set completeopt=menuone,noselect
 " custom commands
 command HoogleOpen call system('open https://hoogle.haskell.org/')
 
-set termguicolors
-syntax on
-set background=dark
-colorscheme gruvbox
-
-lua << EOF
-require('keybindings')
-require('lsp')
-require('line')
-EOF
-
-

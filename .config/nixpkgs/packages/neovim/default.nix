@@ -25,13 +25,11 @@ in
     extraConfig = (builtins.readFile ./init.vim);
     plugins = with plugins; [
       neoformat
-      gruvbox
       fugitive
       nerdcommenter
       vim-visual-multi
       barbar-nvim
       quickfix-reflector-vim
-      lspconfig-nvim
       lspkind-nvim
       nvim-compe
       lspsaga-nvim
@@ -42,11 +40,22 @@ in
       telescope-nvim
       nvim-web-devicons
       vim-startify
-      lualine-nvim
       purescript-vim
       lsptrouble-nvim
       gitgutter
       vim-rescript
+      { plugin = lspconfig-nvim; config = "lua require('lsp')"; }
+      { plugin = whichkey-nvim; config = "lua require('keybindings')"; }
+      { plugin = lualine-nvim; config = "lua require('line')"; }
+      {
+        plugin = gruvbox-material;
+        config = ''
+          set termguicolors
+          syntax on
+          set background=dark
+          colorscheme gruvbox-material
+        '';
+      }
       {
         plugin = indentLine;
         config = ''
