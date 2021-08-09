@@ -13,7 +13,7 @@ let
     {
       inherit pkgs;
     };
-  reason = {
+  rescript = {
     home.packages = [ rescriptLsp ];
   };
   nix = with unstable; {
@@ -124,6 +124,7 @@ in
   inherit git;
   inherit neovim;
   inherit nix;
+  inherit rescript;
   all = lib.mkMerge [
     haskell
     purescript
@@ -133,6 +134,7 @@ in
     python
     git
     neovim
+    rescript
     nix
   ];
 }

@@ -69,6 +69,7 @@ let
       programming.git
       programming.web
       programming.nix
+      programming.rescript
       ops
       apps
     ];
