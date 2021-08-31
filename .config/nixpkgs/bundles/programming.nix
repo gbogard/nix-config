@@ -121,20 +121,20 @@ in
   inherit scala;
   inherit rust;
   inherit python;
+  inherit rescript;
   inherit git;
   inherit neovim;
   inherit nix;
-  inherit rescript;
   all = lib.mkMerge [
     haskell
     purescript
     web
-    rust
     scala
+    rust
     python
+    rescript
     git
     neovim
-    rescript
     nix
   ];
 }

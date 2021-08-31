@@ -2,6 +2,7 @@
 let
   inherit (import ../pkgs.nix) pkgs;
   machine = (import ../machine.nix);
+  nodePackages' = (import ../packages/node-packages/default.nix { inherit pkgs; });
 in
 lib.mkMerge [
   {
@@ -13,6 +14,8 @@ lib.mkMerge [
       curl
       wget
       youtube-dl
+      nodePackages'.ngrok
+      nodePackages'.localtunnel
     ];
   }
 ]
