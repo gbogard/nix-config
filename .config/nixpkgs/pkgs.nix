@@ -1,7 +1,7 @@
 rec {
   metals_overlay = self: super: {
     metals = super.metals.overrideAttrs (old: rec {
-      version = "0.10.3";
+      version = "0.10.5";
       deps = self.stdenv.mkDerivation {
         name = "${old.pname}-deps-${version}";
         buildCommand = ''
@@ -14,7 +14,7 @@ rec {
         '';
         outputHashMode = "recursive";
         outputHashAlgo = "sha256";
-        outputHash = "1psmsiwd3xlbrvkdvr2zgs2b66kw8w2jvvqa399g7jhixh2fpbx4";
+        outputHash = "151i0bgq00xiiq3zyb7x10x37rhsi6knvhqnrffnmbg1xfnr4xjp";
       };
       buildInputs = [ self.jdk deps ];
     });

@@ -13,7 +13,7 @@ let
     {
       inherit pkgs;
     };
-  reason = {
+  rescript = {
     home.packages = [ rescriptLsp ];
   };
   nix = with unstable; {
@@ -121,6 +121,7 @@ in
   inherit scala;
   inherit rust;
   inherit python;
+  inherit rescript;
   inherit git;
   inherit neovim;
   inherit nix;
@@ -134,5 +135,6 @@ in
     git
     neovim
     nix
+    rescript
   ];
 }

@@ -29,3 +29,5 @@ set completeopt=menuone,noselect
 " custom commands
 command HoogleOpen call system('open https://hoogle.haskell.org/')
 
+" Treat sbt files like scala files
+au BufRead,BufNewFile *.sbt set filetype=scala
