@@ -24,26 +24,27 @@ in
     package = pkgs.neovim-unwrapped;
     extraConfig = (builtins.readFile ./init.vim);
     plugins = with plugins; [
-      neoformat
-      fugitive
-      nerdcommenter
-      vim-visual-multi
       barbar-nvim
-      quickfix-reflector-vim
+      completion-buffers
+      completion-nvim
+      fugitive
+      gitgutter
       lspkind-nvim
-      nvim-compe
       lspsaga-nvim
-      whichkey-nvim
-      vim-nix
+      lsptrouble-nvim
+      neoformat
+      nerdcommenter
+      nvim-web-devicons
       plenary-nvim
       popup-nvim
-      telescope-nvim
-      nvim-web-devicons
-      vim-startify
       purescript-vim
-      lsptrouble-nvim
-      gitgutter
+      quickfix-reflector-vim
+      telescope-nvim
+      vim-nix
       vim-rescript
+      vim-startify
+      vim-visual-multi
+      whichkey-nvim
       { plugin = lspconfig-nvim; config = "lua require('lsp')"; }
       { plugin = whichkey-nvim; config = "lua require('keybindings')"; }
       { plugin = lualine-nvim; config = "lua require('line')"; }

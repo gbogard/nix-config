@@ -29,11 +29,17 @@ in
       rev = "5e3bece7b4b4905f4ec89bee74c09cfd8172a16a";
       sha256 = "1k6rz652fjkzhjd8ljr0l6vfispanrlpq0r4aya4qswzxni4rxhg";
     };
-    nvim-compe = fromGithub {
-      owner = "hrsh7th";
-      repo = "nvim-compe";
-      rev = "99452ae6875889c12653963b68e53c4564848954";
-      sha256 = "1d5hpn3mr2h3s5h2svajbxm0n49mmc5w0sip9cpzyfdpbnv1gic3";
+    completion-nvim = fromGithub {
+      owner = "nvim-lua";
+      repo = "completion-nvim";
+      rev = "139fb6cfbd9f7384a5489d3e4afdacb8ed977ab0";
+      sha256 = "1641gx74mqbsp42m6z695l8xlr56b79vklghjdxywi35xbz4yq22";
+    };
+    completion-buffers = fromGithub {
+      owner = "steelsojka";
+      repo = "completion-buffers";
+      rev = "c36871b2a44b59761387f4972c617b44dcec5e75";
+      sha256 = "14rxmy3cjrl7lr4yvrk7nkhc5h8rlpj7xjixzgr0vmnbsl885kyh";
     };
     lspconfig-nvim = fromGithub {
       owner = "neovim";
