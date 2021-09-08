@@ -47,9 +47,11 @@ let
     home.packages = [
       unstable.nodejs
       yarn
-      typescript
+      geckodriver
       serve
       nodePackages'.vscode-langservers-extracted
+      nodePackages'.typescript
+      nodePackages'.typescript-language-server
     ];
   };
   scala =

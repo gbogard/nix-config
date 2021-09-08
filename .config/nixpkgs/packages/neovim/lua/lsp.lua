@@ -66,6 +66,8 @@ lspconfig.rescriptls.setup{
   cmd = { 'node', vim.env.HOME .. '/.nix-profile/rescriptls/extension/server/out/server.js', '--stdio'};
   root_dir = lspconfig.util.root_pattern("bsconfig.json", ".git");
 }
+-- HTML
+require'lspconfig'.html.setup{}
 -- CSS
 lspconfig.cssls.setup{
   cmd = {vim.env.HOME .. '/.nix-profile/bin/vscode-css-language-server', '--stdio'}
@@ -73,6 +75,10 @@ lspconfig.cssls.setup{
 -- JSON
 lspconfig.jsonls.setup{
   cmd = {vim.env.HOME .. '/.nix-profile/bin/vscode-json-language-server', '--stdio'}
+}
+-- Javascript/Typescript
+require'lspconfig'.tsserver.setup{
+  cmd = {vim.env.HOME .. '/.nix-profile/bin/typescript-language-server', '--stdio'}
 }
 
 -- Diagnostics

@@ -15,7 +15,6 @@ lib.mkMerge [
       wget
       youtube-dl
       nodePackages'.ngrok
-      nodePackages'.localtunnel
     ];
   }
 ]
