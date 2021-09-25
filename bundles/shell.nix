@@ -13,5 +13,5 @@ lib.mkMerge [
       ripgrep
     ];
   }  
-  (import ../packages/zsh/zsh.nix { inherit lib; })
+  (import ../hm-modules/zsh/zsh.nix { inherit lib; })
 ]
