@@ -1,7 +1,6 @@
 { lib, config, ... }:
 let
   pkgs = (import ../nixpkgs);
-  nodePackages' = (import ../packages/node-packages/default.nix { inherit pkgs; });
   rescriptLsp = (import ../packages/rescript-lsp.nix);
   easy-ps = import
     (pkgs.fetchFromGitHub {
@@ -49,9 +48,9 @@ let
       yarn
       geckodriver
       serve
-      nodePackages'.vscode-langservers-extracted
-      nodePackages'.typescript
-      nodePackages'.typescript-language-server
+      vscode-langservers-extracted
+      typescript
+      typescript-language-server
     ];
   };
   scala =
