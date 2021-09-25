@@ -1,6 +1,6 @@
 { lib, ... }:
 let
-  inherit (import ../../pkgs.nix) pkgs;
+  pkgs = (import ../../nixpkgs);
   machine = (import ../../machine.nix);
 in
 with pkgs; lib.mkMerge [

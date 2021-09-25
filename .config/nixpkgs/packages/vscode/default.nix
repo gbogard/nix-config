@@ -1,11 +1,11 @@
 let
-  inherit (import ../../pkgs.nix) unstable;
+  pkgs = import ../../nixpkgs;
   extensions = (import ./extensions.nix);
 in
 {
   programs.vscode = {
     enable = true;
-    package = unstable.vscodium;
+    package = pkgs.vscodium;
     userSettings = {
       "update.channel" = "none";
       "editor.tabSize" = 2;

@@ -1,5 +1,5 @@
 let
-  inherit (import ../pkgs.nix) pkgs unstable;
+  inherit (import ../nixpkgs) pkgs unstable;
 in
   pkgs.stdenv.mkDerivation rec {
   pname = "rescriptls";

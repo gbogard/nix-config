@@ -1,6 +1,6 @@
 { lib, ... }:
 let
-  inherit (import ../pkgs.nix) pkgs;
+  pkgs = (import ../nixpkgs);
   machine = (import ../machine.nix);
   nodePackages' = (import ../packages/node-packages/default.nix { inherit pkgs; });
 in

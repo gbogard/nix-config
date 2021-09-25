@@ -1,5 +1,5 @@
 let
-  inherit (../../pkgs.nix) pkgs;
+  inherit (../../nixpkgs) pkgs;
 in
 {
   home.file.".config/kitty/theme.conf".source = ./theme.conf;

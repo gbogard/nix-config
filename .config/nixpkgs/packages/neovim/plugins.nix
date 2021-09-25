@@ -1,16 +1,16 @@
 let
-  inherit (import ../../pkgs.nix) unstable;
+  pkgs = (import ../../nixpkgs);
   fromGithub = { owner, repo, rev, sha256 }:
-    unstable.vimUtils.buildVimPlugin {
+    pkgs.vimUtils.buildVimPlugin {
       name = repo;
       pname = repo;
       version = rev;
       buildPhase = "echo build;";
-      src = unstable.fetchFromGitHub { inherit owner repo rev sha256; };
+      src = pkgs.fetchFromGitHub { inherit owner repo rev sha256; };
     };
 in
-  with unstable;
-  unstable.vimPlugins // rec {
+  with pkgs;
+  vimPlugins // rec {
     plenary-nvim = fromGithub {
       owner = "nvim-lua";
       repo = "plenary.nvim";

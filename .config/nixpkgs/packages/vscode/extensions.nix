@@ -1,12 +1,12 @@
 let
-  inherit (import ../../pkgs.nix) unstable;
+  pkgs = (import ../../nixpkgs);
 in
-with unstable.vscode-extensions; [
+with pkgs.vscode-extensions; [
   dbaeumer.vscode-eslint
   scalameta.metals
   haskell.haskell
   vscodevim.vim
-] ++ unstable.vscode-utils.extensionsFromVscodeMarketplace [
+] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
   {
     name = "gruvbox-material";
     publisher = "sainnhe";

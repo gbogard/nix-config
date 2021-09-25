@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  inherit (import ./pkgs.nix) pkgs;
+  pkgs = (import ./nixpkgs);
   machine = (import ./machine.nix);
   baseConfig =
     {

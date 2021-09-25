@@ -1,6 +1,6 @@
 { lib, config, ... }:
 let
-  inherit (import ../pkgs.nix) unstable pkgs;
+  pkgs = (import ../nixpkgs);
   nodePackages' = (import ../packages/node-packages/default.nix { inherit pkgs; });
   rescriptLsp = (import ../packages/rescript-lsp.nix);
   easy-ps = import
@@ -16,7 +16,7 @@ let
   rescript = {
     home.packages = [ rescriptLsp ];
   };
-  nix = with unstable; {
+  nix = with pkgs; {
     home.packages = [ rnix-lsp ];
   };
   haskell = with pkgs; {
@@ -30,7 +30,7 @@ let
         hlint
         ormolu
         cabal-install
-        unstable.haskell-language-server
+        haskell-language-server
       ]
     ];
   };
@@ -40,12 +40,12 @@ let
       spago
       dhall-simple
       zephyr
-      nodePackages.purescript-language-server
+      nodePackages.pkgs
     ];
   };
   web = with pkgs; with nodePackages; {
     home.packages = [
-      unstable.nodejs
+      nodejs
       yarn
       geckodriver
       serve
@@ -56,14 +56,13 @@ let
   };
   scala =
     let
-      java = unstable.graalvm11-ce;
+      java = pkgs.graalvm11-ce;
       javaOpts = { jre = java; };
-      # We use an unstable version of sbt to get the sbtn thin client
-      sbt = (unstable.sbt.overrideAttrs (old: { installCheckPhase = ""; })).override javaOpts;
+      sbt = (pkgs.sbt.overrideAttrs (old: { installCheckPhase = ""; })).override javaOpts;
       scala = pkgs.scala.override javaOpts;
       coursier = pkgs.coursier.override javaOpts;
       bloop = pkgs.bloop.override javaOpts;
-      metals = unstable.metals.override javaOpts;
+      metals = pkgs.metals.override javaOpts;
       scalafmt = pkgs.scalafmt.override javaOpts;
       maven = pkgs.maven.override { jdk = java; };
     in
@@ -90,7 +89,7 @@ let
     home.packages = [ rust-bin.stable.latest.default ];
   };
   git = {
-    home.packages = [ unstable.delta ];
+    home.packages = [ pkgs.delta ];
     programs.git = {
       enable = true;
       userName = "Guillaume Bogard";

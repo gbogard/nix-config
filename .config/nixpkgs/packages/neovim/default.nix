@@ -1,13 +1,9 @@
 { config, ... }:
 let
-  inherit (import ../../pkgs.nix) pkgs unstable;
+  pkgs = (import ../../nixpkgs);
   plugins = (import ./plugins.nix);
-  neovimWithCd = (import ./neovim-with-cd.nix { inherit config; });
 in
 {
-  home.packages = [
-    neovimWithCd
-  ];
   home.file.".config/nvim/lua/keybindings.lua".source = ./lua/keybindings.lua;
   home.file.".config/nvim/lua/lsp.lua".source = ./lua/lsp.lua;
   home.file.".config/nvim/lua/line.lua".source = ./lua/line.lua;
