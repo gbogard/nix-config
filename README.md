@@ -49,12 +49,8 @@ nix-shell '<home-manager>' -A install
 cd Projects/
 git clone git@github.com:gbogard/dotfiles.git
 
-# Generate the details for the current computer
-chmod +x Projects/dotfiles/generate-machine.sh
-./Projects/dotfiles/generate-machine.sh
-
-# Create a symlink from the dotfiles folder to the .config folder
-ln -s ~/Projects/dotfiles/.config/nixpkgs ~/.config 
+# Create a symlink from a machine's folder folder to the .config folder
+ln -s ~/Projects/dotfiles/machines/work-mac/home.nix ~/.config/nixpkgs 
 
 # Switch to the new config
 home-manager switch

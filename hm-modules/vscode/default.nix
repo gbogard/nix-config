@@ -1,3 +1,4 @@
+env:
 let
   pkgs = import ../../nixpkgs;
   extensions = (import ./extensions.nix);

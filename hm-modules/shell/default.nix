@@ -1,7 +1,6 @@
-{ lib, ... }:
+{ lib, ...}:
 let
   pkgs = (import ../../nixpkgs);
-  machine = (import ../../machine.nix);
 in
 with pkgs; lib.mkMerge [
   {
@@ -56,19 +55,12 @@ with pkgs; lib.mkMerge [
     home.packages = [
       starship
       direnv
+      exa
+      procs
+      tokei
+      bash
+      curl
+      ripgrep
     ];
   }
-  (lib.mkIf (machine.operatingSystem == "Darwin") {
-    programs.zsh.initExtraBeforeCompInit =
-      # Initialise nix path on macOs
-      ". $HOME/.nix-profile/etc/profile.d/nix.sh;" +
-      ". $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh;";
-  })
-  (lib.mkIf (machine.operatingSystem == "Ubuntu") {
-    programs.zsh.initExtraBeforeCompInit =
-      # Initialise nix path on Ubuntu (multi-user setup)
-      "export PATH=\"$PATH:/nix/var/nix/profiles/default/bin\"
-       export PATH=\"$PATH:/nix/var/nix/profiles/per-user/$USER/profile/bin\"
-       export NIX_PATH=$HOME/.nix-defexpr/channels\${NIX_PATH:+:}$NIX_PATH";
-  })
 ]
