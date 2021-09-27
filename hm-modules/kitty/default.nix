@@ -1,6 +1,4 @@
-let
-  inherit (../../nixpkgs) pkgs;
-in
+env:
 {
   home.file.".config/kitty/theme.conf".source = ./theme.conf;
   programs.kitty = {

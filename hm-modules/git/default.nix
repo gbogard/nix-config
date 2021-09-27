@@ -1,8 +1,11 @@
+env:
 let
-  pkgs = (import ../nixpkgs);
+  pkgs = (import ../../nixpkgs);
 in
 {
   home.packages = [ pkgs.delta ];
+
+  home.file.".config/git/ignore".source = ./gitignore;
   programs.git = {
     enable = true;
     userName = "Guillaume Bogard";
