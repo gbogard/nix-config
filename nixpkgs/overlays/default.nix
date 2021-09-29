@@ -6,4 +6,5 @@
   (import ./node-packages.nix)
   (import ./rescript.nix)
   (import ./scala.nix)
+  (import ./purescript.nix)
 ]

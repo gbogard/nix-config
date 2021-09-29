@@ -45,6 +45,8 @@ nix-shell '<home-manager>' -A install
 
 ### IV) Use the configuration
 
+a) On a non-NixOS system
+
 ```
 cd Projects/
 git clone git@github.com:gbogard/dotfiles.git
@@ -54,4 +56,14 @@ ln -s ~/Projects/dotfiles/machines/work-mac/home.nix ~/.config/nixpkgs
 
 # Switch to the new config
 home-manager switch
+```
+
+b) On a NixOS system
+
+```
+cd Projects/
+git clone git@github.com:gbogard/dotfiles.git
+
+# Rebuild the system using the machine's configuration instead of /etc/nixos
+nixos-rebuild switch -I nixos-config=/home/guillaume/Projects/nix-config/machines/nixos-workstation/configuration.nix
 ```
