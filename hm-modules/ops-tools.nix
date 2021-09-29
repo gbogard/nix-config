@@ -11,6 +11,6 @@ in
     curl
     wget
     youtube-dl
-    nodePackages.ngrok
+    backblaze-b2
   ];
 }
