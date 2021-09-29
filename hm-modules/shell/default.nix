@@ -61,6 +61,7 @@ with pkgs; lib.mkMerge [
       bash
       curl
       ripgrep
+      tmux
     ];
   }
 ]
