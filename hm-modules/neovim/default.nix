@@ -7,13 +7,14 @@ in
   home.file.".config/nvim/lua/keybindings.lua".source = ./lua/keybindings.lua;
   home.file.".config/nvim/lua/lsp.lua".source = ./lua/lsp.lua;
   home.file.".config/nvim/lua/line.lua".source = ./lua/line.lua;
-  programs.zsh = {
+  programs.zsh = rec {
     shellGlobalAliases = {
       neovim = "nvim";
       vi = "nvim";
       vim = "nvim";
       v = "nvim";
     };
+    shellAliases = shellGlobalAliases;
   };
   programs.neovim = {
     enable = true;
