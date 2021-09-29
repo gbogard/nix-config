@@ -3,10 +3,6 @@ env.lib.mkMerge [
   rec {
     home.username = "guillaume";
     home.homeDirectory = "/home/guillaume";
-    programs.zsh.shellAliases = {
-      "nixos-switch-configuration" =
-        "sudo nixos-rebuild switch -I \"nixos-config=${home.homeDirectory}/Projects/nix-config/machines/nixos-workstation/configuration.nix\"";
-    };
   }
   (import ../../hm-modules/base.nix env)
   (import ../../hm-modules/neovim env)
