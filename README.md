@@ -19,7 +19,7 @@ sh <(curl -L https://nixos.org/nix/install) --daemon
 ### II) Add the stable nix channel
 
 ```
-nix-channel --add https://nixos.org/channels/nixos-20.09 nixpkgs
+nix-channel --add https://nixos.org/channels/nixos-21.05 nixpkgs
 ```
 
 ### III) Install home-manager
@@ -27,7 +27,7 @@ nix-channel --add https://nixos.org/channels/nixos-20.09 nixpkgs
 First add the nix channel
 
 ```
-nix-channel --add https://github.com/nix-community/home-manager/archive/release-20.09.tar.gz home-manager
+nix-channel --add https://github.com/nix-community/home-manager/archive/release-21.05.tar.gz home-manager
 nix-channel --update
 ```
 
