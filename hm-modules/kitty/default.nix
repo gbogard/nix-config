@@ -1,7 +1,6 @@
 env:
 {
   home.file.".config/kitty/theme.conf".source = ./theme.conf;
-  home.sessionVariables.TERM = "xterm";
   programs.kitty = {
     enable = true;
     settings = {
