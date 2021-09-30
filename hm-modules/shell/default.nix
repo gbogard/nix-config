@@ -4,6 +4,7 @@ let
 in
   with pkgs; lib.mkMerge [
     {
+      home.sessionVariables.TERM = "xterm-256color";
       programs.zsh = {
         enable = true;
         enableAutosuggestions = true;
@@ -54,11 +55,17 @@ in
       };
       programs.tmux = {
         enable = true;
-        sensibleOnTop = true;
-        keyMode = "vi";
+        terminal = "screen-256color";
         extraConfig = ''
           set-option -g mouse on
+          set-option -g status-position top
         '';
+        plugins = [
+          {
+            plugin = tmuxPlugins.gruvbox;
+            extraConfig = "set -g @tmux-gruvbox 'dark'";
+          }
+        ];
       };
       home.packages = [
         starship
