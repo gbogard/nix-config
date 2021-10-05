@@ -64,6 +64,7 @@ in
             plugin = tmuxPlugins.gruvbox;
             extraConfig = "set -g @tmux-gruvbox 'dark'";
           }
+          { plugin = tmuxPlugins.yank; }
         ];
       };
       home.packages = [
