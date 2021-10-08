@@ -58,6 +58,8 @@ in
         extraConfig = ''
           set-option -g mouse on
           set-option -g status-position top
+          set -sg escape-time 0
+          bind -n C-k clear-history
         '';
         plugins = [
           {

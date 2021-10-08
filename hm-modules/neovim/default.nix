@@ -26,6 +26,7 @@ in
       completion-nvim
       fugitive
       gitgutter
+      goyo-vim
       lspkind-nvim
       lspsaga-nvim
       lsptrouble-nvim
