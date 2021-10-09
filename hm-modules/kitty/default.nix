@@ -9,7 +9,6 @@ env:
       update_check_interval = 0;
       font_size = 16;
     };
-    font.name = "FiraCode Nerd Font";
     extraConfig = (builtins.readFile ./kitty.conf);
   };
 }

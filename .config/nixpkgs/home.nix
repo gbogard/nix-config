@@ -1,0 +1,1 @@
+/Users/guillaumebogard/Projects/dotfiles/machines/personal-mac/home.nix
