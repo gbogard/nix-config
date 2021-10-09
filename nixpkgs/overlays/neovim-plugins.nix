@@ -1,3 +1,4 @@
+self: super:
 let
   pkgs = (import ../../nixpkgs);
   fromGithub = { owner, repo, rev, sha256 }:
@@ -8,9 +9,7 @@ let
       buildPhase = "echo build;";
       src = pkgs.fetchFromGitHub { inherit owner repo rev sha256; };
     };
-in
-  with pkgs;
-  vimPlugins // rec {
+  additionalPlugins = {
     plenary-nvim = fromGithub {
       owner = "nvim-lua";
       repo = "plenary.nvim";
@@ -95,4 +94,10 @@ in
       rev = "7a1d276a3d938d488d2d592fbb52ecec642268fc";
       sha256 = "1pvdlci25qr122gzrb661bpl62sfz81vxsbyzwwnf16b18qsxi5r";
     };
-  }
+  };
+  fixPluginPath = name: pkg: pkg.overrideAttrs (old: {
+    postInstall = ''
+      	cp -r $out/share/vim-plugins/${old.pname}/* $out;
+    '';
+  });
+in { vimPlugins = pkgs.lib.mapAttrs fixPluginPath (super.vimPlugins // additionalPlugins); }

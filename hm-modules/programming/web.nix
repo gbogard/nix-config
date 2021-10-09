@@ -8,8 +8,8 @@ in
     yarn
     geckodriver
     serve
-    vscode-langservers-extracted
     typescript
     typescript-language-server
+    vscode-langservers-extracted
   ];
 }

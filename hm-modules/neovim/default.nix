@@ -1,7 +1,6 @@
 { config, ... }:
 let
   pkgs = (import ../../nixpkgs);
-  plugins = (import ./plugins.nix);
 in
 {
   home.file.".config/nvim/lua/keybindings.lua".source = ./lua/keybindings.lua;
@@ -16,11 +15,10 @@ in
     };
     shellAliases = shellGlobalAliases;
   };
-  programs.neovim = {
+  programs.neovim = rec {
     enable = true;
-    package = pkgs.neovim-unwrapped;
-    extraConfig = (builtins.readFile ./init.vim);
-    plugins = with plugins; [
+    package = pkgs.neovim-nightly;
+    plugins = with pkgs.vimPlugins; [
       barbar-nvim
       completion-buffers
       completion-nvim
@@ -93,5 +91,8 @@ in
         '';
       }
     ];
+    extraConfig = ''
+      ${builtins.readFile ./init.vim}
+    '';
   };
 }  
