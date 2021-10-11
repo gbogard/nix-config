@@ -1,11 +1,11 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 let
   pkgs = (import ../../nixpkgs);
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-21.05.tar.gz";
 in
 {
   imports = [
-    (import "${home-manager}/nix-darwin")
+    (env: (import "${home-manager}/nix-darwin") (env // { inherit pkgs; }))
   ];
 
   users.users.guillaumebogard = {
@@ -15,7 +15,7 @@ in
   home-manager = {
     useGlobalPkgs = true;
     users = {
-      guillaumebogard = import ./home.nix;
+      guillaumebogard = (import ./home.nix);
     };
   };
   # List packages installed in system profile. To search by name, run:
