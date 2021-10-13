@@ -11,5 +11,6 @@ in
     typescript
     typescript-language-server
     vscode-langservers-extracted
+    source-map-explorer
   ];
 }

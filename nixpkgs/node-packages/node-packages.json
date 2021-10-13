@@ -1,1 +1,6 @@
-["vscode-langservers-extracted", "typescript", "typescript-language-server", "ngrok"]
+[
+  "vscode-langservers-extracted",
+  "typescript",
+  "typescript-language-server",
+  "source-map-explorer"
+]
