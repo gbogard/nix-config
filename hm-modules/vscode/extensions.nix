@@ -3,15 +3,27 @@ let
 in
 with pkgs.vscode-extensions; [
   dbaeumer.vscode-eslint
-  scalameta.metals
   haskell.haskell
   vscodevim.vim
+  pkief.material-icon-theme
 ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+  {
+    name = "scala";
+    publisher = "scala-lang";
+    version = "0.5.4";
+    sha256 = "1a27yq29g9md98cm1gsb0sjw9hy1jsnqzxd91r7vq7infvcc1i26";
+  }
+  {
+    name = "metals";
+    publisher = "scalameta";
+    version = "1.10.11";
+    sha256 = "10zh04ib6prjc2mlyihp8a6j4j428j7xp64kak1y356shvmccqzs";
+  }
   {
     name = "gruvbox-material";
     publisher = "sainnhe";
-    version = "6.4.4";
-    sha256 = "1g224vl307n6yphsmh22i4m9795pj2paiddm4ml8z2q0zwm2i0mh";
+    version = "6.4.6";
+    sha256 = "17xddfkxfgj9qls1364c8iqk359rk0k6fc6xpl93zzqr43hx4vxf";
   }
   {
     name = "vscode-xml";

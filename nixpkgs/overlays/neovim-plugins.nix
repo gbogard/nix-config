@@ -28,17 +28,35 @@ let
       rev = "5e3bece7b4b4905f4ec89bee74c09cfd8172a16a";
       sha256 = "1k6rz652fjkzhjd8ljr0l6vfispanrlpq0r4aya4qswzxni4rxhg";
     };
-    completion-nvim = fromGithub {
-      owner = "nvim-lua";
-      repo = "completion-nvim";
-      rev = "139fb6cfbd9f7384a5489d3e4afdacb8ed977ab0";
-      sha256 = "1641gx74mqbsp42m6z695l8xlr56b79vklghjdxywi35xbz4yq22";
+    vim-vsnip = fromGithub {
+      owner = "hrsh7th";
+      repo = "vim-vsnip";
+      rev = "e0b3a6bb28d2418978715942aded4d9a9f2404f5";
+      sha256 = "1f0a4jm8wqwyk50p6yxm0bh7wkd3scgr9dwfhz0mz5hmd3bzcl8k";
     };
-    completion-buffers = fromGithub {
-      owner = "steelsojka";
-      repo = "completion-buffers";
-      rev = "c36871b2a44b59761387f4972c617b44dcec5e75";
-      sha256 = "14rxmy3cjrl7lr4yvrk7nkhc5h8rlpj7xjixzgr0vmnbsl885kyh";
+    nvim-cmp = fromGithub {
+      owner = "hrsh7th";
+      repo = "nvim-cmp";
+      rev = "b185e303bd00390325c582d0366f85298cf84299";
+      sha256 = "12ssag1nlg01vy1x8ip8mfclcklmvkysf3mvg6223scawy2kggk7";
+    };
+    cmp-nvim-lsp = fromGithub {
+      owner = "hrsh7th";
+      repo = "cmp-nvim-lsp";
+      rev = "accbe6d97548d8d3471c04d512d36fa61d0e4be8";
+      sha256 = "1dqx6yrd60x9ncjnpja87wv5zgnij7qmzbyh5xfyslk67c0i6mwm";
+    };
+    cmp-vsnip = fromGithub {
+      owner = "hrsh7th";
+      repo = "cmp-vsnip";
+      rev = "1588c35bf8f637e8f5287477f31895781858f970";
+      sha256 = "0q3z0f7d53cbqidx8qd3z48b46a83l5ay54iw525w22j1kki3aaw";
+    };
+    cmp-buffer = fromGithub {
+      owner = "hrsh7th";
+      repo = "cmp-buffer";
+      rev = "5dde5430757696be4169ad409210cf5088554ed6";
+      sha256 = "0fdywbv4b0z1kjnkx9vxzvc4cvjyp9mnyv4xi14zndwjgf1gmcwl";
     };
     lspconfig-nvim = fromGithub {
       owner = "neovim";
@@ -93,6 +111,24 @@ let
       repo = "gruvbox-material";
       rev = "7a1d276a3d938d488d2d592fbb52ecec642268fc";
       sha256 = "1pvdlci25qr122gzrb661bpl62sfz81vxsbyzwwnf16b18qsxi5r";
+    };
+    nvim-metals = fromGithub {
+      owner = "scalameta";
+      repo = "nvim-metals";
+      rev = "cac8c02d28f8923bfda75706040e4177e1bd3fab";
+      sha256 = "1p0p8qx8lw1yvbk6mgclzpzqfwhc0k2ax2yjkamwj9c653lzwx3c";
+    };
+    lspkind-nvim = fromGithub {
+      owner = "onsails";
+      repo = "lspkind-nvim";
+      rev = "0f7851772ebdd5cb67a04b3d3cda5281a1eb83c1";
+      sha256 = "0jk1xlp8x6vw40dl96zvmdxv0p8100rzx7za58xpahz10232lckx";
+    };
+    vim-startify = fromGithub {
+      owner = "mhinz";
+      repo = "vim-startify";
+      rev = "3ffa62fbe781b3df20fafa3bd9d710dc99c16a8c";
+      sha256 = "0ysr07yy9fxgz8drn11hgcwns7d0minh4afrjxrz9lwcm7c994h4";
     };
   };
   fixPluginPath = name: pkg: pkg.overrideAttrs (old: {

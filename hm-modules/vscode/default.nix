@@ -12,10 +12,12 @@ in
       "editor.tabSize" = 2;
       "workbench.sideBar.location" = "right";
       "workbench.colorTheme" = "Gruvbox Material Dark";
-      "editor.fontFamily" = "Fira Code";
+      "editor.fontFamily" = "Fira Code, FiraCode NF, FiraCode Nerd Font";
       "editor.fontLigatures" = true;
       "editor.fontSize" = 14;
       "redhat.telemetry.enabled" = false;
+      "workbench.iconTheme" = "material-icon-theme";
+      "editor.mouseWheelZoom" = true;
     };
     extensions = extensions;
   };

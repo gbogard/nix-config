@@ -20,8 +20,9 @@ in
     package = pkgs.neovim-nightly;
     plugins = with pkgs.vimPlugins; [
       barbar-nvim
-      completion-buffers
-      completion-nvim
+      cmp-nvim-lsp
+      cmp-buffer
+      cmp-vsnip
       fugitive
       gitgutter
       goyo-vim
@@ -30,6 +31,8 @@ in
       lsptrouble-nvim
       neoformat
       nerdcommenter
+      nvim-cmp
+      nvim-metals
       nvim-web-devicons
       plenary-nvim
       popup-nvim
@@ -38,9 +41,10 @@ in
       telescope-nvim
       vim-nix
       vim-rescript
-      vim-startify
       vim-visual-multi
+      vim-vsnip
       whichkey-nvim
+      { plugin = vim-startify; config = "let g:startify_change_to_dir = 0"; }
       { plugin = lspconfig-nvim; config = "lua require('lsp')"; }
       { plugin = whichkey-nvim; config = "lua require('keybindings')"; }
       { plugin = lualine-nvim; config = "lua require('line')"; }
@@ -95,4 +99,4 @@ in
       ${builtins.readFile ./init.vim}
     '';
   };
-}  
+}

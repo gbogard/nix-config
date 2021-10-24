@@ -1,6 +1,7 @@
 " set leader key
 let mapleader=' '
 
+set noautochdir
 set updatetime=500
 set timeoutlen=1000 ttimeoutlen=0
 
@@ -24,15 +25,11 @@ set shiftwidth=2
 set expandtab
 set smartindent
 
-set completeopt=menuone,noselect
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
-
-" Avoid showing message extr
-set shortmess+=c
 
 " custom commands
 command! HoogleOpen call system('open https://hoogle.haskell.org/')

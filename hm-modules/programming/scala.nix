@@ -9,9 +9,9 @@ in
     sbt
     pkgs.scala
     coursier
-    bloop
     scalafmt
-    metals
+    # bloop
+    # metals
     maven
     # jetbrains.idea-community
     # jetbrains.idea-community-darwin

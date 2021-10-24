@@ -1,49 +1,53 @@
 require'lspsaga'.init_lsp_saga()
 
--- Completion symbols
-require('lspkind').init({
-    with_text = true,
-    symbol_map = {
-      Text = '',
-      Method = 'ƒ',
-      Function = '',
-      Constructor = '',
-      Variable = '',
-      Class = '',
-      Interface = 'ﰮ',
-      Module = '',
-      Property = '',
-      Unit = '',
-      Value = '',
-      Enum = '了',
-      Keyword = '',
-      Snippet = '﬌',
-      Color = '',
-      File = '',
-      Folder = '',
-      EnumMember = '',
-      Constant = '',
-      Struct = ''
-    }
+----------------------------------------------------------------------
+-- Completion
+----------------------------------------------------------------------
+
+local cmp = require'cmp'
+local lspkind = require('lspkind')
+
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+      -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+      -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+      -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
+    end,
+  },
+  formatting = {
+    format = lspkind.cmp_format({with_text = false, maxwidth = 50})
+  },
+  mapping = {
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm({ select = false }),
+    ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' })
+  },
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'vsnip' }, -- For vsnip users.
+    -- { name = 'luasnip' }, -- For luasnip users.
+    -- { name = 'ultisnips' }, -- For ultisnips users.
+    -- { name = 'snippy' }, -- For snippy users.
+  }, {
+    { name = 'buffer' }
+  })
 })
 
--- Completion sources
-vim.g.completion_chain_complete_list = {
-  default = {
-    { complete_items = { 'lsp' } },
-    { complete_items = { 'buffers' } },
-    { mode = { '<c-p>' } },
-    { mode = { '<c-n>' } }
-  },
-}
+----------------------------------------------------------------------
+-- lspconfig
+----------------------------------------------------------------------
 
 local custom_attach = function(client, bfnr)
     print("LSP started.");
     require'keybindings'.attach_lsp_keybindings(bfnr);
-    require'completion'.on_attach(client, bnfr);
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local serverOptions = {
@@ -53,8 +57,6 @@ local serverOptions = {
 }
 local lspconfig = require "lspconfig"
 
--- Scala
-lspconfig.metals.setup(serverOptions)
 -- Haskell
 lspconfig.hls.setup(serverOptions)
 -- Nix
@@ -81,8 +83,36 @@ require'lspconfig'.tsserver.setup{
   cmd = {vim.env.HOME .. '/.nix-profile/bin/typescript-language-server', '--stdio'}
 }
 
+------------------------------------------------------------
+-- Scala (nvim-metals)
+------------------------------------------------------------
+-- (For Scala, I use nvim-metals, not lspconfig)
+-- See here https://github.com/scalameta/nvim-metals/discussions/39
+-- for an example configuration.
+vim.opt_global.shortmess:remove("F"):append("c")
+
+-- Augroup
+vim.cmd([[augroup lsp]])
+vim.cmd([[autocmd!]])
+vim.cmd([[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(metals_config)]])
+vim.cmd([[augroup end]])
+
+-- Needed for symbol highlights to work correctly
+vim.cmd([[hi! link LspReferenceText CursorColumn]])
+vim.cmd([[hi! link LspReferenceRead CursorColumn]])
+vim.cmd([[hi! link LspReferenceWrite CursorColumn]])
+
+metals_config = require("metals").bare_config()
+metals_config.capabilities = capabilities
+
+----------------------------------------------------------------------
 -- Diagnostics
+----------------------------------------------------------------------
 require"trouble".setup {}
+
+----------------------------------------------------------------------
+-- Hover docs
+----------------------------------------------------------------------
 
 local printer = function(_, _, result)
   if not (result)
