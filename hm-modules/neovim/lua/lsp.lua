@@ -44,7 +44,6 @@ cmp.setup({
 
 local custom_attach = function(client, bfnr)
     print("LSP started.");
-    require'keybindings'.attach_lsp_keybindings(bfnr);
 end
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())

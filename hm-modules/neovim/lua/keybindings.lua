@@ -32,6 +32,11 @@ local keymap = {
             s = {'<Cmd>Telescope git_status<CR>', 'status'}
         },
         h = {'<Cmd>HoogleOpen<CR>', 'Open Hoogle'}
+    },
+    g = {
+      name = 'Go to',
+      d = {'<Cmd>lua vim.lsp.buf.definition()<CR>', 'definition'},
+      D = {'<Cmd>lua vim.lsp.buf.declaration()<CR>', 'declaration'}
     }
 }
 
@@ -51,23 +56,8 @@ local check_back_space = function()
     end
 end
 
-return {
-    attach_lsp_keybindings = function(bufnr)
-        local opts = {noremap = true, silent = true}
-        local function buf_set_keymap(...)
-            vim.api.nvim_buf_set_keymap(bufnr, ...)
-        end
-        buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-        buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-        buf_set_keymap('n', 'K', '<Cmd>Lspsaga hover_doc<CR>', opts)
-        buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>',
-                       opts)
-        buf_set_keymap('n', '<C-k>',
-                       '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-
-       vim.api.nvim_command('augroup InlineHover')
-       vim.api.nvim_command('autocmd CursorHold * :lua require("lsp").print_hover_doc() ')
-       vim.api.nvim_command('augroup END')
-    end
-}
+-- Doc on hover
+vim.api.nvim_command('augroup InlineHover')
+vim.api.nvim_command('autocmd CursorHold * :lua require("lsp").print_hover_doc() ')
+vim.api.nvim_command('augroup END')
 
