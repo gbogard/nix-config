@@ -6,6 +6,7 @@ in
   home.file.".config/nvim/lua/keybindings.lua".source = ./lua/keybindings.lua;
   home.file.".config/nvim/lua/lsp.lua".source = ./lua/lsp.lua;
   home.file.".config/nvim/lua/line.lua".source = ./lua/line.lua;
+  home.file.".config/nvim/lua/telescope-config.lua".source = ./lua/telescope-config.lua;
   programs.zsh = rec {
     shellGlobalAliases = {
       neovim = "nvim";
@@ -24,6 +25,7 @@ in
       cmp-buffer
       cmp-vsnip
       fugitive
+      fzf-vim
       gitgutter
       goyo-vim
       lspkind-nvim
@@ -38,12 +40,13 @@ in
       popup-nvim
       purescript-vim
       quickfix-reflector-vim
-      telescope-nvim
       vim-nix
       vim-rescript
       vim-visual-multi
       vim-vsnip
       whichkey-nvim
+      telescope-fzf-native-nvim
+      { plugin = telescope-nvim; config = "lua require('telescope-config')"; }
       { plugin = vim-startify; config = "let g:startify_change_to_dir = 0"; }
       { plugin = lspconfig-nvim; config = "lua require('lsp')"; }
       { plugin = whichkey-nvim; config = "lua require('keybindings')"; }

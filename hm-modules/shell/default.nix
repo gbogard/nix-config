@@ -78,6 +78,7 @@ in
         bash
         curl
         ripgrep
+        fzf
       ];
     }
   ]

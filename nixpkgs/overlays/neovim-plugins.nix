@@ -10,24 +10,6 @@ let
       src = pkgs.fetchFromGitHub { inherit owner repo rev sha256; };
     };
   additionalPlugins = {
-    plenary-nvim = fromGithub {
-      owner = "nvim-lua";
-      repo = "plenary.nvim";
-      rev = "8bae2c1fadc9ed5bfcfb5ecbd0c0c4d7d40cb974";
-      sha256 = "1axvjv6n77afkjqk914dpc020kxd7mig6m5sr916k1n1q35jc4ny";
-    };
-    telescope-nvim = fromGithub {
-      owner = "nvim-telescope";
-      repo = "telescope.nvim";
-      rev = "5692edd004fed1dbd55c90775c34a051298724e7";
-      sha256 = "0mzgbnm9ic173spnm9w9da7yl79fqg6p7s1sv0w3d3m7qqvz0bpz";
-    };
-    popup-nvim = fromGithub {
-      owner = "nvim-lua";
-      repo = "popup.nvim";
-      rev = "5e3bece7b4b4905f4ec89bee74c09cfd8172a16a";
-      sha256 = "1k6rz652fjkzhjd8ljr0l6vfispanrlpq0r4aya4qswzxni4rxhg";
-    };
     vim-vsnip = fromGithub {
       owner = "hrsh7th";
       repo = "vim-vsnip";
@@ -70,12 +52,6 @@ let
       rev = "cb0e35d2e594ff7a9c408d2e382945d56336c040";
       sha256 = "0ywhdgh6aqs0xlm8a4d9jhkik254ywagang12r5nyqxawjsmjnib";
     };
-    lualine-nvim = fromGithub {
-      owner = "hoob3rt";
-      repo = "lualine.nvim";
-      rev = "6ba2b80b594c3ead11ab9bd1dbc94c0b4ea46c33";
-      sha256 = "0xhdc18sdlbhhyd7p898n4ymyvrhjqbsj5yzb6vmjvc4d9gln1k6";
-    };
     lsptrouble-nvim = fromGithub {
       owner = "folke";
       repo = "lsp-trouble.nvim";
@@ -93,12 +69,6 @@ let
       repo = "vim-rescript";
       rev = "b8714edb8fe5ff2b7e32ced3bdeddd31ed08b02e";
       sha256 = "1qzf1g00abj658nvp45nkzjwwdwhbhswpdndrwzsf7y3h2knjlx0";
-    };
-    barbar-nvim = fromGithub {
-      owner = "romgrk";
-      repo = "barbar.nvim";
-      rev = "e640b28610e68696095c72a4fb89c5930dde97ab";
-      sha256 = "15fh7lgpkk453jkbazaby751p78ppgqw0l5zrdd54g8cvk4y1yil";
     };
     nvim-tree-lua = fromGithub {
       owner = "kyazdani42";
@@ -124,16 +94,13 @@ let
       rev = "0f7851772ebdd5cb67a04b3d3cda5281a1eb83c1";
       sha256 = "0jk1xlp8x6vw40dl96zvmdxv0p8100rzx7za58xpahz10232lckx";
     };
-    vim-startify = fromGithub {
-      owner = "mhinz";
-      repo = "vim-startify";
-      rev = "3ffa62fbe781b3df20fafa3bd9d710dc99c16a8c";
-      sha256 = "0ysr07yy9fxgz8drn11hgcwns7d0minh4afrjxrz9lwcm7c994h4";
-    };
   };
-  fixPluginPath = name: pkg: pkg.overrideAttrs (old: {
-    postInstall = ''
-      	cp -r $out/share/vim-plugins/${old.pname}/* $out;
-    '';
-  });
-in { vimPlugins = pkgs.lib.mapAttrs fixPluginPath (super.vimPlugins // additionalPlugins); }
+  fixPluginPath = name: pkg: pkg.overrideAttrs (
+    old: {
+      postInstall = ''
+        	cp -r $out/share/vim-plugins/${old.pname}/* $out;
+      '';
+    }
+  );
+in
+{ vimPlugins = pkgs.lib.mapAttrs fixPluginPath (super.vimPlugins // additionalPlugins); }
