@@ -7,10 +7,10 @@ in
     kubectl
     awscli2
     sqlite
-    drill
     curl
     wget
     youtube-dl
     backblaze-b2
+    wrk
   ];
 }

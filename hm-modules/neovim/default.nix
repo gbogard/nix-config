@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  pkgs = (import ../../nixpkgs);
+  pkgs = (import ../../nixpkgs/stable.nix);
 in
 {
   home.file.".config/nvim/lua/keybindings.lua".source = ./lua/keybindings.lua;
@@ -45,10 +45,9 @@ in
       vim-visual-multi
       vim-vsnip
       whichkey-nvim
-      telescope-fzf-native-nvim
       { plugin = telescope-nvim; config = "lua require('telescope-config')"; }
       { plugin = vim-startify; config = "let g:startify_change_to_dir = 0"; }
-      { plugin = lspconfig-nvim; config = "lua require('lsp')"; }
+      { plugin = nvim-lspconfig; config = "lua require('lsp')"; }
       { plugin = whichkey-nvim; config = "lua require('keybindings')"; }
       { plugin = lualine-nvim; config = "lua require('line')"; }
       {

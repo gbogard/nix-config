@@ -17,4 +17,5 @@ env.lib.mkMerge [
   (import ../../hm-modules/programming/nix.nix env)
   (import ../../hm-modules/programming/web.nix env)
   (import ../../hm-modules/programming/rescript.nix env)
+  (import ../../hm-modules/programming/rust.nix env)
 ]

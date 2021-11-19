@@ -1,6 +1,6 @@
 self: super:
 let
-  pkgs = (import ../../nixpkgs);
+  pkgs = (import ../../nixpkgs/stable.nix);
   fromGithub = { owner, repo, rev, sha256 }:
     pkgs.vimUtils.buildVimPlugin {
       name = repo;
@@ -94,13 +94,18 @@ let
       rev = "0f7851772ebdd5cb67a04b3d3cda5281a1eb83c1";
       sha256 = "0jk1xlp8x6vw40dl96zvmdxv0p8100rzx7za58xpahz10232lckx";
     };
+    fugitive = fromGithub {
+      owner = "tpope";
+      repo = "vim-fugitive";
+      rev = "2dfaf17f9e9b2c8961eddc8ea51098fef500d189";
+      sha256 = "Ygsu8UAoLYKjrnHUyh2y2XPmWLA/m4nwbIyCpzRiqvg=";
+    };
+    gitgutter = fromGithub {
+      owner = "airblade";
+      repo = "vim-gitgutter";
+      rev = "256702dd1432894b3607d3de6cd660863b331818";
+      sha256 = "9C76ft/YngzIrjf7NIRlEgx3qUuOZjcmwBqpVDQ76n4=";
+    };
   };
-  fixPluginPath = name: pkg: pkg.overrideAttrs (
-    old: {
-      postInstall = ''
-        	cp -r $out/share/vim-plugins/${old.pname}/* $out;
-      '';
-    }
-  );
 in
-{ vimPlugins = pkgs.lib.mapAttrs fixPluginPath (super.vimPlugins // additionalPlugins); }
+{ vimPlugins = super.vimPlugins // additionalPlugins; }

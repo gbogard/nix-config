@@ -14,20 +14,35 @@ in
           pathsToLink = "/Applications";
         };
       in
-        lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-          baseDir="$HOME/Applications/Home Manager Apps"
-          if [ -d "$baseDir" ]; then
-            rm -rf "$baseDir"
-          fi
-          mkdir -p "$baseDir"
-          for appFile in ${apps}/Applications/*; do
-            target="$baseDir/$(basename "$appFile")"
-            $DRY_RUN_CMD cp ''${VERBOSE_ARG:+-v} -fHRL "$appFile" "$baseDir"
-            $DRY_RUN_CMD chmod ''${VERBOSE_ARG:+-v} -R +w "$target"
-          done
-        '';
+      lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        baseDir="$HOME/Applications/Home Manager Apps"
+        if [ -d "$baseDir" ]; then
+          rm -rf "$baseDir"
+        fi
+        mkdir -p "$baseDir"
+        for appFile in ${apps}/Applications/*; do
+          target="$baseDir/$(basename "$appFile")"
+          $DRY_RUN_CMD cp ''${VERBOSE_ARG:+-v} -fHRL "$appFile" "$baseDir"
+          $DRY_RUN_CMD chmod ''${VERBOSE_ARG:+-v} -R +w "$target"
+        done
+      '';
   };
-  programs.zsh.initExtraBeforeCompInit =
-    # Initialise nix path on macOs
-    ". $HOME/.nix-profile/etc/profile.d/nix.sh;" + ". $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh;";
+  programs.zsh = rec {
+    initExtraBeforeCompInit =
+      # Initialise nix path on macOs
+      ''
+        . $HOME/.nix-profile/etc/profile.d/nix.sh;
+        . $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh;
+        codeApp="$HOME/.nix-profile/Applications/VSCodium.app/Contents/Resource/app/bin"
+        if [ -d "$codeApp" ]; then
+          export PATH="$codeApp:$PATH";
+          alias code="codium";
+        fi
+        unset codeApp;
+      '';
+    shellGlobalAliases = {
+      code = "codium";
+    };
+    shellAliases = shellGlobalAliases;
+  };
 }
