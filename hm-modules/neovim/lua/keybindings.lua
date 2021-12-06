@@ -56,8 +56,3 @@ local check_back_space = function()
     end
 end
 
--- Doc on hover
-vim.api.nvim_command('augroup InlineHover')
-vim.api.nvim_command('autocmd CursorHold * :silent! lua require("lsp").print_hover_doc() ')
-vim.api.nvim_command('augroup END')
-

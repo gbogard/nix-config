@@ -33,7 +33,7 @@ in
       ''
         . $HOME/.nix-profile/etc/profile.d/nix.sh;
         . $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh;
-        codeApp="$HOME/.nix-profile/Applications/VSCodium.app/Contents/Resource/app/bin"
+        codeApp="$HOME/.nix-profile/Applications/Visual\ Studio\ Code.app/Contents/Resource/app/bin"
         if [ -d "$codeApp" ]; then
           export PATH="$codeApp:$PATH";
           alias code="codium";

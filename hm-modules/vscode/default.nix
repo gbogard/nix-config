@@ -6,7 +6,7 @@ in
 {
   programs.vscode = {
     enable = true;
-    package = pkgs.vscodium;
+    package = pkgs.vscode;
     userSettings = {
       "update.channel" = "none";
       "editor.tabSize" = 2;

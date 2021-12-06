@@ -44,6 +44,12 @@ cmp.setup({
 
 local custom_attach = function(client, bfnr)
     print("LSP started.");
+
+    if client.supports_method('textDocument/hover') then
+      vim.api.nvim_command('augroup InlineHover')
+      vim.api.nvim_command('autocmd CursorHold * :silent! lua require("lsp").print_hover_doc() ')
+      vim.api.nvim_command('augroup END')
+    end
 end
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())

@@ -2,7 +2,7 @@
 let mapleader=' '
 
 set noautochdir
-set updatetime=500
+set updatetime=300
 set timeoutlen=1000 ttimeoutlen=0
 
 " Clear search highlight with esc
